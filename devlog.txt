@@ -1,0 +1,7 @@
+oscarW, rengZ, tomasA, tamis -- 2021-12-08 8:30
+- reviewed DD changes
+
+oscarW -- 2021-12-09 6:26
+- created tablified visualization of game functionality
+- revised devlog for more specificity on program components, project explanation
+- drew sitemap
