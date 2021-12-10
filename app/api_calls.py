@@ -19,4 +19,12 @@ def get_random_word(number: int = 1) -> list:
 
 	return words
 
+def get_word_attributes(word: str) -> dict:
+	'''Gets the definition and synonyms of a word.
+
+	Keyword arguments:
+	word -- the word you want a definition of
+
+	return a doc of the word's attributes.'''
+
 print(get_random_word(2))
