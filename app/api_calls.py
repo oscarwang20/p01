@@ -3,8 +3,8 @@ import json
 import urllib3
 http = urllib3.PoolManager() # general requests manager that the rest of the functions will use.
 keys = {
-	"webster_dictionary": open("keys/MerriamWebster/Dictionary.key", "r").read().rstrip();
-	"webster_thesaurus": open("keys/MerriamWebster/Thesaurus.key", "r").read().rstrip();
+	"webster_dictionary": open("keys/MerriamWebster/Dictionary.key", "r").read().rstrip(),
+	"webster_thesaurus": open("keys/MerriamWebster/Thesaurus.key", "r").read().rstrip(),
 }
 
 def get_random_word(number: int = 1) -> list:
