@@ -1,4 +1,3 @@
-import codecs
 import json
 import urllib3
 http = urllib3.PoolManager() # general requests manager that the rest of the functions will use.
