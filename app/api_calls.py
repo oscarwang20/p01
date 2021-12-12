@@ -81,7 +81,9 @@ def get_word_synonyms(word: str) -> list:
 
 	raw = get_word_thesaurus_raw(word)
 
-	if raw[0]['meta']['id'] != word: #if the first result (a.k.a closest fit) isn't the word itself, there are no synonyms so we can trash the dataset
+	if len(raw) == 0 or isinstance(raw[0], str):#checks if it returned no data OR suggestions for close words (aka it has no data)
+		return []
+	elif raw[0]['meta']['id'] != word: #if the first result (a.k.a closest fit) isn't the word itself, there are no synonyms so we can trash the dataset (this is different from the above as words can be part of sayings that have synonyms but not have synonyms themselves)
 		return []
 	else:
 		return raw[0]['meta']['syns'][0] #returns synonyms for most likely definition.
@@ -111,6 +113,6 @@ def get_wikipedia_links(query: str, links:int = 10) -> list:
 
 	return links
 ##print(get_random_word(2))
-print(get_word_definition('sdadasd'))
-##print(get_word_synonyms('apple'))
+##print(get_word_definition('sdadasd'))
+print(get_word_synonyms('sdadasd'))
 ##print(get_wikipedia_links("apple"))
