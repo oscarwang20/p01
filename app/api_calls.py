@@ -103,7 +103,11 @@ def get_wikipedia_links(query: str, links:int = 10) -> list:
 	r = r[list(r.keys())[0]]#extracts the most relevant page's links
 	r = r['links']#extracts links in the page
 
-	return r
+	links = list()
+	for link in r:#extracts title data from the api
+		links.append(link['title'])
+
+	return links
 ##print(get_random_word(2))
 ##print(get_word_definition('apple'))
 ##print(get_word_synonyms('apple'))
