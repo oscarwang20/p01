@@ -36,8 +36,7 @@ def get_word_definition(word: str) -> dict:
 
 	r = r.data #gets json from response
 	r = json.loads(r)
-	print(r)
 	return r
 
 print(get_random_word(2))
-get_word_definition("apple")
+print(str(get_word_definition("apple")).encode('windows-1252', 'backslashreplace').decode('windows-1252'))
