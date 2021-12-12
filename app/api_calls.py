@@ -35,8 +35,8 @@ def get_word_definition(word: str) -> dict:
 	r = http.request('GET', f'https://dictionaryapi.com/api/v3/references/collegiate/json/{word}?key={keys["webster_dictionary"]}') # requests word from dictionary api with provisioned key
 
 	r = r.data #gets json from response
-	r = json.loads(r)
+	r = json.loads(r) #loads json
 	return r
 
 print(get_random_word(2))
-print(str(get_word_definition("apple")).encode('windows-1252', 'backslashreplace').decode('windows-1252'))
+print(str(get_word_definition("apple")).encode('windows-1252', 'backslashreplace').decode('windows-1252')) # so it doesn't break on windows devices. This print statement is gonna be like this for a while.
