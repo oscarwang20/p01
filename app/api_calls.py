@@ -70,9 +70,21 @@ def get_word_thesaurus_raw(word: str) -> dict:
 
 	return r
 
-def get_word_synonyms(word: str) -> dict:
-	pass
+def get_word_synonyms(word: str) -> list:
+	'''Gets synonyms for the word.
+
+	Keyword arguments:
+	word -- the word you want synonymized
+
+	returns the attributes of the api response for that word, none if there's not an exact match'''
+
+	raw = get_word_thesaurus_raw(word)
+
+	if raw[0]['meta']['id'] != word: #if the first result (a.k.a closest fit) isn't the word itself, there are no synonyms so we can trash the dataset
+		return None
+	else:
+		return raw[0]['meta']['syns'][0] #returns synonyms for most likely definition.
 
 ##print(get_random_word(2))
 ##print(get_word_definition('apple'))
-print(get_word_thesaurus_raw('apple'))
+print(get_word_synonyms('toward'))
