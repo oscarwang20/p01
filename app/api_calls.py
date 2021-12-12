@@ -37,6 +37,7 @@ def get_word_dictionary_raw(word: str) -> dict:
 
 	r = r.data #gets json from response
 	r = json.loads(r) #loads json
+
 	return r
 
 def get_word_definition(word: str) -> str:
@@ -50,7 +51,28 @@ def get_word_definition(word: str) -> str:
 	raw = get_word_dictionary_raw(word)
 	raw = raw[0] #extracts the most common definition of the word
 	raw = raw['shortdef'] #gets the quick definitions
+
 	return raw[0] #gets the most popular short defintion
 
-print(get_random_word(2))
-print(get_word_definition('apple'))
+def get_word_thesaurus_raw(word: str) -> dict:
+	'''Gets MerriamWebster's raw synonyms archive for a word.
+
+	Keyword arguments:
+	word -- the word you want synonymized
+
+	returns the attributes of the api response for that word'''
+	global keys
+
+	r = http.request('GET', f'https://dictionaryapi.com/api/v3/references/thesaurus/json/{word}?key={keys["webster_thesaurus"]}')
+
+	r = r.data #gets data from request
+	r = json.loads(r)
+
+	return r
+
+def get_word_synonyms(word: str) -> dict:
+	pass
+
+##print(get_random_word(2))
+##print(get_word_definition('apple'))
+print(get_word_thesaurus_raw('apple'))
