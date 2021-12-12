@@ -23,8 +23,8 @@ def get_random_word(number: int = 1) -> list:
 
 	return words
 
-def get_word_definition(word: str) -> dict:
-	'''Gets the definition and synonyms of a word.
+def get_word_dictionary_raw(word: str) -> dict:
+	'''Gets the definition and metadata of a word.
 
 	Keyword arguments:
 	word -- the word you want a definition of
@@ -38,5 +38,18 @@ def get_word_definition(word: str) -> dict:
 	r = json.loads(r) #loads json
 	return r
 
+def get_word_definition(word: str) -> str:
+	'''Gets the definition of a word.
+
+	Keyword arguments:
+	word -- the word you want defined
+
+	returns the string that's its definition'''
+
+	raw = get_word_dictionary_raw(word)
+	raw = raw[0] #extracts the most common definition of the word
+	raw = raw['shortdef'] #gets the quick definitions
+	return raw[0] #gets the most popular short defintion
+
 print(get_random_word(2))
-print(str(get_word_definition("apple")).encode('windows-1252', 'backslashreplace').decode('windows-1252')) # so it doesn't break on windows devices. This print statement is gonna be like this for a while.
+print(get_word_definition('apple'))
