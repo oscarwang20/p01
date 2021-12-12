@@ -105,15 +105,19 @@ def get_wikipedia_links(query: str, links:int = 10) -> list:
 	r = json.loads(r)#loads the json
 	r = r['query']#extracts main chunk of data from json
 	r = r['pages']#extracts pages concerning this topic
-	r = r[list(r.keys())[0]]#extracts the most relevant page's links
-	r = r['links']#extracts links in the page
 
-	links = list()
-	for link in r:#extracts title data from the api
-		links.append(link['title'])
+	if '-1' in r.keys(): #checks for the no page error return. If its present, return nothing as we don't have a page on it.
+		return []
+	else:
+		r = r[list(r.keys())[0]]#extracts the most relevant page's links
+		r = r['links']#extracts links in the page
 
-	return links
+		links = list()
+		for link in r:#extracts title data from the api
+			links.append(link['title'])
+
+		return links
 ##print(get_random_word(2))
-print(get_word_definition('sdadasd'))
-print(get_word_synonyms('sdadasd'))
-##print(get_wikipedia_links("apple"))
+##print(get_word_definition('sdadasd'))
+##print(get_word_synonyms('sdadasd'))
+##print(get_wikipedia_links("i"))
