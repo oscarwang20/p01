@@ -48,10 +48,13 @@ def get_word_definition(word: str) -> str:
 	returns the string that's its definition'''
 
 	raw = get_word_dictionary_raw(word)
-	raw = raw[0] #extracts the most common definition of the word
-	raw = raw['shortdef'] #gets the quick definitions
+	if len(raw) == 0 or isinstance(raw[0], str):#checks if it returned no data OR suggestions for words (aka it has no data)
+		return 'There is no definition available.'
+	else:
+		raw = raw[0] #extracts the most common definition of the word
+		raw = raw['shortdef'] #gets the quick definitions
 
-	return raw[0] #gets the most popular short defintion
+		return raw[0] #gets the most popular short defintion
 
 def get_word_thesaurus_raw(word: str) -> dict:
 	'''Gets MerriamWebster's raw synonyms archive for a word.
@@ -79,11 +82,42 @@ def get_word_synonyms(word: str) -> list:
 
 	raw = get_word_thesaurus_raw(word)
 
-	if raw[0]['meta']['id'] != word: #if the first result (a.k.a closest fit) isn't the word itself, there are no synonyms so we can trash the dataset
+	if len(raw) == 0 or isinstance(raw[0], str):#checks if it returned no data OR suggestions for close words (aka it has no data)
+		return []
+	elif raw[0]['meta']['id'] != word: #if the first result (a.k.a closest fit) isn't the word itself, there are no synonyms so we can trash the dataset (this is different from the above as words can be part of sayings that have synonyms but not have synonyms themselves)
 		return []
 	else:
 		return raw[0]['meta']['syns'][0] #returns synonyms for most likely definition.
 
+def get_wikipedia_links(query: str, links:int = 10) -> list:
+	'''Gets wikipedia links to a word.
+
+	Keyword arguments:
+	query -- the current page we're on in the game
+	links -- the number of links you want in your query
+
+	returns all wikipedia links for that specific word and page'''
+	query = query.replace(' ', '%20') #replaces spaces in query with appropriate url codes
+	url = f'https://en.wikipedia.org/w/api.php?format=json&action=query&titles={query}&prop=links&pllimit={links}'
+
+	r = http.request('GET', url)#gets api response
+	r = r.data#extracts data
+	r = json.loads(r)#loads the json
+	r = r['query']#extracts main chunk of data from json
+	r = r['pages']#extracts pages concerning this topic
+
+	if '-1' in r.keys(): #checks for the no page error return. If its present, return nothing as we don't have a page on it.
+		return []
+	else:
+		r = r[list(r.keys())[0]]#extracts the most relevant page's links
+		r = r['links']#extracts links in the page
+
+		links = list()
+		for link in r:#extracts title data from the api
+			links.append(link['title'])
+
+		return links
 ##print(get_random_word(2))
-##print(get_word_definition('apple'))
-print(get_word_synonyms('apple'))
+##print(get_word_definition('sdadasd'))
+##print(get_word_synonyms('sdadasd'))
+##print(get_wikipedia_links("i"))
