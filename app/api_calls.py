@@ -84,6 +84,27 @@ def get_word_synonyms(word: str) -> list:
 	else:
 		return raw[0]['meta']['syns'][0] #returns synonyms for most likely definition.
 
+def get_wikipedia_links(query: str, links:int = 10) -> list:
+	'''Gets wikipedia links to a word.
+
+	Keyword arguments:
+	query -- the current page we're on in the game
+	links -- the number of links you want in your query
+
+	returns all wikipedia links for that specific word and page'''
+	query = query.replace(' ', '%20') #replaces spaces in query with appropriate url codes
+	url = f'https://en.wikipedia.org/w/api.php?format=json&action=query&titles={query}&prop=links&pllimit={links}'
+
+	r = http.request('GET', url)#gets api response
+	r = r.data#extracts data
+	r = json.loads(r)#loads the json
+	r = r['query']#extracts main chunk of data from json
+	r = r['pages']#extracts pages concerning this topic
+	r = r[list(r.keys())[0]]#extracts the most relevant page's links
+	r = r['links']#extracts links in the page
+
+	return r
 ##print(get_random_word(2))
 ##print(get_word_definition('apple'))
-print(get_word_synonyms('apple'))
+##print(get_word_synonyms('apple'))
+print(get_wikipedia_links("apple"))
