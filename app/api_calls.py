@@ -48,13 +48,14 @@ def get_word_definition(word: str) -> str:
 	returns the string that's its definition'''
 
 	raw = get_word_dictionary_raw(word)
-	if not (len(raw) == 0 or isinstance(raw[0], str)):#checks if it returned no data OR suggestions for words (aka it has no data)
+	if len(raw) == 0 or isinstance(raw[0], str):#checks if it returned no data OR suggestions for words (aka it has no data)
+		return 'There is no definition available.'
+	else:
 		raw = raw[0] #extracts the most common definition of the word
 		raw = raw['shortdef'] #gets the quick definitions
 
 		return raw[0] #gets the most popular short defintion
-	else:
-		return None
+
 def get_word_thesaurus_raw(word: str) -> dict:
 	'''Gets MerriamWebster's raw synonyms archive for a word.
 
@@ -113,6 +114,6 @@ def get_wikipedia_links(query: str, links:int = 10) -> list:
 
 	return links
 ##print(get_random_word(2))
-##print(get_word_definition('sdadasd'))
+print(get_word_definition('sdadasd'))
 print(get_word_synonyms('sdadasd'))
 ##print(get_wikipedia_links("apple"))
