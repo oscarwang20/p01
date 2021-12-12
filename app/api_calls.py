@@ -81,10 +81,10 @@ def get_word_synonyms(word: str) -> list:
 	raw = get_word_thesaurus_raw(word)
 
 	if raw[0]['meta']['id'] != word: #if the first result (a.k.a closest fit) isn't the word itself, there are no synonyms so we can trash the dataset
-		return None
+		return []
 	else:
 		return raw[0]['meta']['syns'][0] #returns synonyms for most likely definition.
 
 ##print(get_random_word(2))
 ##print(get_word_definition('apple'))
-print(get_word_synonyms('toward'))
+print(get_word_synonyms('apple'))
