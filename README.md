@@ -1,14 +1,14 @@
 # Word in the Middle Game
 ---
-Advent - Renggeng Zheng, Oscar Wang, Tami Takada, Tomas Acuna
-SoftDev
-P01: ArRESTed Development
+Advent - Renggeng Zheng, Oscar Wang, Tami Takada, Tomas Acuna  
+SoftDev  
+P01: ArRESTed Development  
 
 # Roles
-Tami: Frontend, word generation
-Oscar: Database
-Reng: API calls
-Tomas: Leaderboard
+Tami: Frontend, word generation  
+Oscar: Database  
+Reng: API calls  
+Tomas: Leaderboard  
 
 # Description
 Two players (local on one computer) will be assigned one randomly generated "word in the
