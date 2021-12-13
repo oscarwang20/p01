@@ -23,7 +23,7 @@
 				<h3 class="card-divider">Wikipedia Links</h3>
 				<div class="card-section grid-x">
 					{% for link in links %}
-						<div class="small-4 cell">{{ link }}</div>
+						<div class="small-4 cell"><a href="/game/{{ link }}">{{ link }}</a></div>
 					{% endfor %}
 				</div>
 			</div>
