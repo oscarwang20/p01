@@ -9,11 +9,21 @@
 		<div class="grix-x">
 			<h1>{{ word }}</h1>
 			<h2>Definition: {{ definition }}</h2>
+
 			<div class="card">
 				<h3 class="card-divider">Synonyms</h3>
 				<div class="card-section grid-x">
 					{% for synonym in synonyms %}
 						<div class='small-3 cell'>{{ synonym }}</div>
+					{% endfor %}
+				</div>
+			</div>
+
+			<div class="card">
+				<h3 class="card-divider">Wikipedia Links</h3>
+				<div class="card-section grix-x">
+					{% for link in links %}
+						<div class="small-3 cell">{{ link }}</div>
 					{% endfor %}
 				</div>
 			</div>
