@@ -14,7 +14,7 @@
 				<h3 class="card-divider">Synonyms</h3>
 				<div class="card-section grid-x">
 					{% for synonym in synonyms %}
-						<div class='small-3 cell'>{{ synonym }}</div>
+						<div class='small-3 cell'><a href="/game/{{ synonym }}">{{ synonym }}</a></div>
 					{% endfor %}
 				</div>
 			</div>
