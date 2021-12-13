@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/css/foundation.min.css" crossorigin="anonymous">
+		<title>That Word Game</title>
+	</head>
+	<body>
+		<div class="grix-x">
+			<h1>{{ word }}</h1>
+			<h2>Definition: {{ definition }}</h2>
+			<div class="card">
+				<h3 class="card-divider">Synonyms</h3>
+				<div class="card-section grid-x">
+					{% for synonym in synonyms %}
+						<div class='small-3 cell'>{{ synonym }}</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
