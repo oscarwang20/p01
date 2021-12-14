@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>{% block title %}{% endblock %}</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/css/foundation.min.css" crossorigin="anonymous">
+    
+    <style>
+      html, body {
+      	height: 100%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="top-bar">
+      <div class="top-bar-left">
+        <ul class="dropdown menu" data-dropdown-menu>
+          <li class="menu-text">Word in the Middle</li>
+          <li><a href="#">Dashboard</a></li>
+          <li><a href="#">New Game</a></li>
+          <li><a href="#">Leaderboard</a></li>
+        </ul>
+      </div>
+      <div class="top-bar-right">
+        <ul class="menu">
+          <li><a href="#">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    {% block body %}{% endblock %}
+    
+    <footer>&copy Team Advent</footer>
+  </body>
+</html>
