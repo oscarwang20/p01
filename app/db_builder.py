@@ -49,7 +49,7 @@ def insert_words(searched):
         # command = "INSERT INTO cache (word, Date, Definition, Synonyms, WikipediaLinks) VALUES (?, ?, ?, ?, ?)"
         # c.execute(command, (word, date, definition, synonyms, wikipedia_links))
 
-        command = "INSERT INTO cache (word, definition, synonyms, wikipediaLinks) VALUES (?, ?, ?, ?, ?)"
+        command = "INSERT INTO cache (word, definition, synonyms, wikipediaLinks) VALUES (?, ?, ?, ?)"
         c.execute(command, (word, definition, synonyms, wikipedia_links))
 
     db.commit()
