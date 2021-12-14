@@ -16,6 +16,10 @@ def new_game():
 
 	return render_template(
 		'new_game.html',
+<<<<<<< HEAD
+
+=======
+>>>>>>> 6323233110706a26623f025d95b78f2a8d044269
 	)
 
 @app.route('/game/<word>', methods=['GET'])
