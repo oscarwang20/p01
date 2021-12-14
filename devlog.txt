@@ -5,3 +5,13 @@ oscarW -- 2021-12-09 6:26
 - created tablified visualization of game functionality
 - revised devlog for more specificity on program components, project explanation
 - drew sitemap
+
+rengZ -- 2021-12-09 8:40
+ - worked on obtaining keys and implementing boiler api calls
+rengZ -- 2021-12-10 8:40
+ - Worked on Merriam webster API parsing.
+ - read API documentation and implemented basic JSON parsing.
+rengZ -- 2021-12-11 20:00
+ - added wikipedia links along with merriam webster api
+rengZ -- 2021-12-13 8:40
+ - Worked on rendering synonyms and links in flask.
