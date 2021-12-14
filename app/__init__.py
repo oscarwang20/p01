@@ -9,6 +9,13 @@ def display_login():
 		'login.html'
 	)
 
+@app.route('/game', methods=['GET', 'POST'])
+def new_game():
+	return render_template(
+		'new_game.html',
+		
+	)
+
 @app.route('/game/<word>', methods=['GET'])
 def display_word_page(word):
 	return render_template(
