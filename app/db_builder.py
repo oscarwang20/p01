@@ -15,11 +15,11 @@ def dbsetup():
     # c.execute(command)
 
     c.execute("DROP TABLE IF EXISTS cache")
-    command = "CREATE TABLE cache (word TEXT PRIMARY KEY, Definition TEXT NOT NULL, Synonyms TEXT NOT NULL, WikipediaLinks TEXT NOT NULL)"
+    command = "CREATE TABLE cache (word TEXT PRIMARY KEY, definition TEXT NOT NULL, synonyms TEXT NOT NULL, wikipediaLinks TEXT NOT NULL)"
     c.execute(command)
 
     c.execute ("DROP TABLE IF EXISTS users")
-    command = "CREATE TABLE users (userID INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT NOT NULL, passowrd TEXT NOT NULL)"
+    command = "CREATE TABLE users (userID INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT NOT NULL, password TEXT NOT NULL)"
     c.execute(command)
 
     c.execute("DROP TABLE IF EXISTS leaderboard")
@@ -49,7 +49,7 @@ def insert_words(searched):
         # command = "INSERT INTO cache (word, Date, Definition, Synonyms, WikipediaLinks) VALUES (?, ?, ?, ?, ?)"
         # c.execute(command, (word, date, definition, synonyms, wikipedia_links))
 
-        command = "INSERT INTO cache (word, Definition, Synonyms, WikipediaLinks) VALUES (?, ?, ?, ?, ?)"
+        command = "INSERT INTO cache (word, definition, synonyms, wikipediaLinks) VALUES (?, ?, ?, ?, ?)"
         c.execute(command, (word, definition, synonyms, wikipedia_links))
 
     db.commit()
