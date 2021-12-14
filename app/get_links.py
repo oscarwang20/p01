@@ -1,5 +1,8 @@
 import api_calls
 
+def get_random_word():
+	return api_calls.get_random_word()
+
 def get_definition(word: str) -> str:
 	'''Returns the definition, if its cached, or retrieves and gets word definition from an api and caches it.
 
