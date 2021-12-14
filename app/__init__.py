@@ -15,11 +15,7 @@ def new_game():
 	session['words'] = list(get_random_word())
 
 	return render_template(
-		'new_game.html',
-<<<<<<< HEAD
-
-=======
->>>>>>> 6323233110706a26623f025d95b78f2a8d044269
+		'new_game.html'
 	)
 
 @app.route('/game/<word>', methods=['GET'])
