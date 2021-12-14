@@ -13,7 +13,7 @@ def dbsetup():
     # command = "CREATE TABLE cache (word TEXT PRIMARY KEY, Date TEXT NOT NULL, Definition TEXT NOT NULL, Synonyms TEXT NOT NULL, WikipediaLinks TEXT NOT NULL)"
     # c.execute(command)
 
-    c.execute("DROP TABLE IF EXISTS words")
+    c.execute("DROP TABLE IF EXISTS cache")
     command = "CREATE TABLE cache (word TEXT PRIMARY KEY, Definition TEXT NOT NULL, Synonyms TEXT NOT NULL, WikipediaLinks TEXT NOT NULL)"
     c.execute(command)
 
@@ -21,7 +21,7 @@ def dbsetup():
     command = "CREATE TABLE users (userID INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT NOT NULL, passowrd TEXT NOT NULL)"
     c.execute(command)
 
-    c.execute("DROP TABLE IF EXISTS leaderboar")
+    c.execute("DROP TABLE IF EXISTS leaderboard")
     command = "CREATE TABLE leaderboard (hash TEXT PRIMARY KEY, word1 TEXT NOT NULL, word2 TEXT NOT NULL, targetWord TEXT NOT NULL, scores TEXT NOT NULL)"
     c.execute(command)
 
@@ -70,8 +70,4 @@ def check_word_exists(word):
     else:
         return True
 
-
-
-
-
-
+dbsetup()

@@ -13,7 +13,7 @@ def display_login():
 def new_game():
 	return render_template(
 		'new_game.html',
-		
+
 	)
 
 @app.route('/game/<word>', methods=['GET'])
