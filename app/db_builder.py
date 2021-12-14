@@ -1,11 +1,12 @@
 import sqlite3
 from api_calls import *
 
-DB_FILE = "wordGame.db"
+def get_db():
+    return sqlite3.connect("wordGame.db")
 
 # Create the database file
 def dbsetup():
-    db = sqlite3.connect(DB_FILE)
+    db = get_db()
     c = db.cursor()
 
     # with date
@@ -30,7 +31,7 @@ def dbsetup():
 
 # gets words from api calls and puts them into the database
 def insert_words(searched):
-    db = sqlite3.connect(DB_FILE)
+    db = get_db()
     c = db.cursor()
 
     for word in searched:
@@ -56,7 +57,7 @@ def insert_words(searched):
 
 # checks if a word already exists in the cache
 def check_word_exists(word):
-    db = sqlite3.connect(DB_FILE)
+    db = get_db()
     c = db.cursor()
 
     command = "SELECT word FROM cache WHERE word = ?"
@@ -65,9 +66,6 @@ def check_word_exists(word):
 
     db.close()
 
-    if result is None:
-        return False
-    else:
-        return True
+    return result is not None
 
 dbsetup()
