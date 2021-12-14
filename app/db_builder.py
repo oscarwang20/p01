@@ -1,6 +1,10 @@
 import sqlite3
 from api_calls import *
 
+def debug(statement:str, DEBUG=True):
+	if DEBUG:
+		print(statement)
+
 # Create the database file
 class Cache_manager:
 	def __init__(self, db_file:str = DB_FILE):
@@ -17,45 +21,33 @@ class Cache_manager:
 
 		command = "CREATE TABLE IF NOT EXISTS leaderboard (hash TEXT PRIMARY KEY, word1 TEXT NOT NULL, word2 TEXT NOT NULL, targetWord TEXT NOT NULL, scores TEXT NOT NULL)"
 		c.execute(command)
+		self.db.commit()
 
-# gets words from api calls and puts them into the database
-def insert_words(searched):
-	db = sqlite3.connect(DB_FILE)
-	c = db.cursor()
+	def insert_word(self, word:str):
+		'''Inserts the word into the cache from api calls so no api calls need to be made in the future.
 
-	for word in searched:
-		# get the definition
+		Keyword arguments:
+		word -- the word to be cached'''
+
+		debug("Caching: " + word)
+
 		definition = get_word_definition(word)
-		# get the synonyms
 		synonyms = get_word_synonyms(word)
-		# get the wikipedia links
 		wikipedia_links = get_wikipedia_links(word)
 
-		# get the date
-		# date = get_date()
-
-		# with date
-		# command = "INSERT INTO cache (word, Date, Definition, Synonyms, WikipediaLinks) VALUES (?, ?, ?, ?, ?)"
-		# c.execute(command, (word, date, definition, synonyms, wikipedia_links))
-
 		command = "INSERT INTO cache (word, Definition, Synonyms, WikipediaLinks) VALUES (?, ?, ?, ?, ?)"
-		c.execute(command, (word, definition, synonyms, wikipedia_links))
+		self.c.execute(command, (word, definition, synonyms, wikipedia_links))
 
-	db.commit()
-	db.close()
+		self.db.commit()
 
-# checks if a word already exists in the cache
-def check_word_exists(word):
-	db = sqlite3.connect(DB_FILE)
-	c = db.cursor()
+	def check_cache(word:str) -> bool:
+		command = "SELECT word FROM cache WHERE word = ?"
+		self.c.execute(command, (word,))
+		result = self.c.fetchone()
 
-	command = "SELECT word FROM cache WHERE word = ?"
-	c.execute(command, (word,))
-	result = c.fetchone()
+		return result is not None
 
-	db.close()
-
-	if result is None:
-		return False
-	else:
-		return True
+	def __del__(self):
+		'''Saves everything before destructing'''
+		self.db.commit()
+		self.db.close()
