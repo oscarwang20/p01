@@ -11,13 +11,22 @@ def display_login():
 
 @app.route('/game', methods=['GET', 'POST'])
 def new_game():
+	session['turns'] = 0
+	session['words'] = list(get_random_word())
+
 	return render_template(
 		'new_game.html',
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6323233110706a26623f025d95b78f2a8d044269
 	)
 
 @app.route('/game/<word>', methods=['GET'])
 def display_word_page(word):
+	session['turns'] += 1
+	session['words'].append(word)
+
 	return render_template(
 		'word_page.html',
 		word = word,
