@@ -1,4 +1,6 @@
 import api_calls
+from cache import Cache_manager
+cache = Cache_manager()
 
 def get_random_word():
 	return api_calls.get_random_word()
