@@ -1,9 +1,12 @@
 import json
+import os
 import urllib3
 http = urllib3.PoolManager() # general requests manager that the rest of the functions will use.
+#makes it work when importing from a different dir
+abs_path = os.path.dirname(__file__)
 keys = {
-	"webster_dictionary": open("keys/MerriamWebster/Dictionary.key", "r").read().rstrip(),
-	"webster_thesaurus": open("keys/MerriamWebster/Thesaurus.key", "r").read().rstrip(),
+	"webster_dictionary": open(abs_path + "/keys/MerriamWebster/Dictionary.key", "r").read().rstrip(),
+	"webster_thesaurus": open(abs_path + "/keys/MerriamWebster/Thesaurus.key", "r").read().rstrip(),
 }
 
 def get_random_word(number: int = 1) -> list:
