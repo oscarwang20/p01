@@ -12,8 +12,11 @@ def get_definition(word: str) -> str:
 	word -- the word we want defined.
 
 	Returns the definition of the word inputted.'''
+	#caches word if it wasn't already cached
+	if not cache.is_cached(word):
+		cache.insert_word(word)
 
-	return api_calls.get_word_definition(word)
+	print(cache.retrieve(word))
 
 def get_synonyms(word: str) -> list:
 	'''Returns the synonym of a word, if its cached, or retrieves and gets synonyms to a word from an api and caches it.

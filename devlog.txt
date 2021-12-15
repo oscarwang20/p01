@@ -17,3 +17,5 @@ rengZ -- 2021-12-13 8:40
  - Worked on rendering synonyms and links in flask.
 rengZ -- 2021-12-14 8:40
  - Converted DB into an untested class.
+rengZ - 2021-12-14 8:35
+ - Tried to add caching to get_links.py
