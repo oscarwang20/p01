@@ -35,7 +35,7 @@ class Cache_manager:
 		synonyms = get_word_synonyms(word)
 		wikipedia_links = get_wikipedia_links(word)
 
-		command = "INSERT INTO cache (word, Definition, Synonyms, WikipediaLinks) VALUES (?, ?, ?, ?, ?)"
+		command = "INSERT INTO cache (word, Definition, Synonyms, WikipediaLinks) VALUES (?, ?, ?, ?)"
 		self.c.execute(command, (word, definition, synonyms, wikipedia_links))
 
 		self.db.commit()
