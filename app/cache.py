@@ -7,7 +7,7 @@ def debug(statement:str, DEBUG=True):
 
 # Create the database file
 class Cache_manager:
-	def __init__(self, db_file:str = DB_FILE):
+	def __init__(self, db_file:str = 'words_cache.db'):
 		'''Sets up requisite db file'''
 		self.db_file = db_file
 		self.db = sqlite3.connect(DB_FILE)
