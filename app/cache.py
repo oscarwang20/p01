@@ -10,17 +10,17 @@ class Cache_manager:
 	def __init__(self, db_file:str = 'words_cache.db'):
 		'''Sets up requisite db file'''
 		self.db_file = db_file
-		self.db = sqlite3.connect(DB_FILE)
-		self.c = db.cursor()
+		self.db = sqlite3.connect(self.db_file)
+		self.c = self.db.cursor()
 
 		command = "CREATE TABLE IF NOT EXISTS cache (word TEXT PRIMARY KEY, Definition TEXT NOT NULL, Synonyms TEXT NOT NULL, WikipediaLinks TEXT NOT NULL)"
-		c.execute(command)
+		self.c.execute(command)
 
 		command = "CREATE TABLE IF NOT EXISTS users (userID INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT NOT NULL, passowrd TEXT NOT NULL)"
-		c.execute(command)
+		self.c.execute(command)
 
 		command = "CREATE TABLE IF NOT EXISTS leaderboard (hash TEXT PRIMARY KEY, word1 TEXT NOT NULL, word2 TEXT NOT NULL, targetWord TEXT NOT NULL, scores TEXT NOT NULL)"
-		c.execute(command)
+		self.c.execute(command)
 		self.db.commit()
 
 	def insert_word(self, word:str):
