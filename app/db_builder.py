@@ -55,17 +55,20 @@ def insert_words(searched):
     db.commit()
     db.close()
 
-# checks if a word already exists in the cache
-def check_word_exists(word):
+def check_item_exists(table, field, item):
     db = get_db()
     c = db.cursor()
 
-    command = "SELECT word FROM cache WHERE word = ?"
+    command = f"SELECT {field} from {table} WHERE {field} = ?"
     c.execute(command, (word,))
     result = c.fetchone()
 
     db.close()
 
     return result is not None
+
+# checks if a word already exists in the cache
+def check_word_exists(word):
+    return check_item_exists("cache", "word", word)
 
 dbsetup()
