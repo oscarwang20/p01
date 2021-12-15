@@ -40,7 +40,7 @@ class Cache_manager:
 
 		self.db.commit()
 
-	def check_cache_for(word:str) -> bool:
+	def is_cached(word:str) -> bool:
 		command = "SELECT word FROM cache WHERE word = ?"
 		self.c.execute(command, (word,))
 		result = self.c.fetchone()
