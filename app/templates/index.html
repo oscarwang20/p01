@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Home</title>
-		<link rel="stylesheet" href="<?php echo base_url(); ?>css/bootstrap.min.css">
-		<link rel="stylesheet" href="<?php echo base_url(); ?>css/bootstrap-theme.min.css">
-	</head>
-	<body>
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<h1>Home</h1>
-					<p>
-						<a href="/login">Login</a>
-						<a href="<?php echo base_url(); ?>index.php/user/register">Register</a>
-					</p>
-				</div>
-			</div>
+
+<head>
+	<title>Home</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/css/foundation.min.css" crossorigin="anonymous">
+</head>
+
+<body>
+	<div class="top-bar">
+		<div class="top-bar-left">
+		  <ul class="menu">
+			<li><a href="/login">Login</a></li>
+			<li><a href="/register">Register</a></li>
+		  </ul>
 		</div>
-	</body>
+	</div>
+	<div class="container">
+		<h1>Home</h1>
+	</div>
+</body>
+
 </html>

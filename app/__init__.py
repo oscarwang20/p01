@@ -1,12 +1,42 @@
-from flask import Flask, render_template, request, url_for
+from flask import Flask, render_template, request, url_for, session
 from get_links import *
 
 app = Flask(__name__)
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/')
+def index():
+	return render_template(
+		'index.html'
+	)
+
+@app.route('/login')
 def display_login():
 	return render_template(
 		'login.html'
+	)
+
+@app.route('/auth', methods=['GET', 'POST'])
+def authenticate():
+	return render_template(
+		'base.html'
+	)
+
+@app.route('/register')
+def display_register():
+	return render_template(
+		'register.html'
+	)
+
+@app.route('/create_new_user', methods=['GET', 'POST'])
+def register():
+	return render_template(
+		'base.html'
+	)
+
+@app.route('/logout')
+def display_logout():
+	return render_template(
+		'index.html'
 	)
 
 @app.route('/game', methods=['GET', 'POST'])
