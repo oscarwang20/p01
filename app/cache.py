@@ -40,12 +40,17 @@ class Cache_manager:
 
 		self.db.commit()
 
-	def is_cached(word:str) -> bool:
+	def is_cached(self, word:str) -> bool:
 		command = "SELECT word FROM cache WHERE word = ?"
 		self.c.execute(command, (word,))
 		result = self.c.fetchone()
 
 		return result is not None
+
+	def retrieve(self, word:str) -> tuple:
+		'''Gets all the information for a given word'''
+
+		return tuple(self.c.execute("SELECT * FROM cache WHERE word = ?"))
 
 	def __del__(self):
 		'''Saves everything before destructing'''
