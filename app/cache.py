@@ -1,3 +1,4 @@
+import json
 import sqlite3
 from api_calls import *
 
@@ -32,8 +33,12 @@ class Cache_manager:
 		debug("Caching: " + word)
 
 		definition = get_word_definition(word)
-		synonyms = get_word_synonyms(word)
-		wikipedia_links = get_wikipedia_links(word)
+		synonyms = json.dumps(get_word_synonyms(word)) #turns output into a json for sqlite
+		wikipedia_links = json.dumps(get_wikipedia_links(word))#turns wikipedia output into json for SQLite
+
+		#debug("Def: " + definition)
+		#debug("Synonyms: " + synonyms)
+		debug("Wikipedia: " + wikipedia_links)
 
 		command = "INSERT INTO cache (word, Definition, Synonyms, WikipediaLinks) VALUES (?, ?, ?, ?)"
 		self.c.execute(command, (word, definition, synonyms, wikipedia_links))
@@ -50,7 +55,7 @@ class Cache_manager:
 	def retrieve(self, word:str) -> tuple:
 		'''Gets all the information for a given word'''
 
-		return tuple(self.c.execute("SELECT * FROM cache WHERE word = ?"))
+		return tuple(self.c.execute("SELECT * FROM cache WHERE word = ?", (word,)))
 
 	def __del__(self):
 		'''Saves everything before destructing'''
