@@ -56,7 +56,7 @@ class Cache_manager:
 		'''Gets all the information for a given word'''
 		self.c.execute("SELECT * FROM cache WHERE word = ?", (word,))
 
-		return tuple(self.c.fetchall()) #gets cursor selected items and then tuples and returns it.
+		return tuple(self.c.fetchall()[0]) #gets cursor selected items and then tuples and returns it. Selects the first row as we're only selecting 1 row, not multiple.
 
 	def define(self, word:str) -> str:
 		'''Returns the definition for a given word'''
