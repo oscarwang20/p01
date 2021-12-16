@@ -19,7 +19,7 @@ def dbsetup():
     c.execute(command)
 
     c.execute ("DROP TABLE IF EXISTS users")
-    command = "CREATE TABLE users (userID INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT NOT NULL, password TEXT NOT NULL)"
+    command = "CREATE TABLE users (username TEXT PRIMARY KEY, password TEXT NOT NULL)"
     c.execute(command)
 
     c.execute("DROP TABLE IF EXISTS leaderboard")
