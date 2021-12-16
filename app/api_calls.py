@@ -9,6 +9,12 @@ keys = {
 	"webster_thesaurus": open(abs_path + "/keys/MerriamWebster/Thesaurus.key", "r").read().rstrip(),
 }
 
+#DEBUG stuff
+DEBUG = True
+def key_used(api:str, debug:bool = DEBUG):
+	if debug:
+		print(f"{api} was invoked")
+
 def get_random_word(number: int = 1) -> list:
 	'''Get a random word.
 
@@ -34,6 +40,7 @@ def get_word_dictionary_raw(word: str) -> dict:
 
 	return a doc of the word's attributes.'''
 	global keys
+	key_used("dictionary")
 
 	r = http.request('GET', f'https://dictionaryapi.com/api/v3/references/collegiate/json/{word}?key={keys["webster_dictionary"]}') # requests word from dictionary api with provisioned key
 
@@ -67,6 +74,7 @@ def get_word_thesaurus_raw(word: str) -> dict:
 
 	returns the attributes of the api response for that word'''
 	global keys
+	key_used("thesaurus")
 
 	r = http.request('GET', f'https://dictionaryapi.com/api/v3/references/thesaurus/json/{word}?key={keys["webster_thesaurus"]}')
 
@@ -102,6 +110,7 @@ def get_wikipedia_links(query: str, links:int = 10) -> list:
 	returns all wikipedia links for that specific word and page'''
 	query = query.replace(' ', '%20') #replaces spaces in query with appropriate url codes
 	url = f'https://en.wikipedia.org/w/api.php?format=json&action=query&titles={query}&prop=links&pllimit={links}'
+	key_used("wikipedia")
 
 	r = http.request('GET', url)#gets api response
 	r = r.data#extracts data
