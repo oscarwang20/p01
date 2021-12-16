@@ -55,33 +55,34 @@ def insert_words(searched):
     db.commit()
     db.close()
 
-def check_item_exists(table, field, item):
+def set_data(command, args):
     db = get_db()
     c = db.cursor()
 
-    command = f"SELECT {field} from {table} WHERE {field} = ?"
-    c.execute(command, (item,))
-    result = c.fetchone()
-
-    db.close()
-
-    return result is not None
-
-# puts the username and password into the users table
-def insert_user(username, password):
-    db = get_db()
-    c = db.cursor()
-
-    command = "INSERT INTO users VALUES (?, ?)"
-    c.execute(command, (username, password))
+    c.execute(command, args)
 
     db.commit()
     db.close()
 
+def get_data(command, args):
+    db = get_db()
+    c = db.cursor()
+
+    c.execute(command, args)
+    result = c.fetchone()
+
+    db.close()
+
+    return result
+
+# puts the username and password into the users table
+def insert_user(username, password):
+    set_data("INSERT INTO users VALUES (?, ?)", (username, password))
+
 # checks if a word already exists in the cache
 def check_word_exists(word):
-    return check_item_exists("cache", "word", word)
+    return get_data("SELECT 1 FROM cache WHERE word = ?", (word,)) != None
 
 # checks if a username already exists in users
 def check_user_exists(username):
-    return check_item_exists("users", "username", username)
+    return get_data("SELECT 1 FROM users WHERE username = ?", (username,)) != None
