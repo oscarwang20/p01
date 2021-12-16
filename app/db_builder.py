@@ -70,5 +70,3 @@ def check_item_exists(table, field, item):
 # checks if a word already exists in the cache
 def check_word_exists(word):
     return check_item_exists("cache", "word", word)
-
-dbsetup()
