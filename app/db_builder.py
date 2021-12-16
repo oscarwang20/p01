@@ -60,13 +60,28 @@ def check_item_exists(table, field, item):
     c = db.cursor()
 
     command = f"SELECT {field} from {table} WHERE {field} = ?"
-    c.execute(command, (word,))
+    c.execute(command, (item,))
     result = c.fetchone()
+    print("result is " + str(result))
 
     db.close()
 
     return result is not None
 
+# puts the username and password into the users table
+def insert_user(username, password):
+    db = get_db()
+    c = db.cursor()
+
+    command = "INSERT INTO users VALUES (?, ?)"
+    c.execute(command, (username, password))
+
+    db.close()
+
 # checks if a word already exists in the cache
 def check_word_exists(word):
     return check_item_exists("cache", "word", word)
+
+# checks if a username already exists in users
+def check_user_exists(username):
+    return check_item_exists("users", "username", username)
