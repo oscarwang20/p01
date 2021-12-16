@@ -86,3 +86,7 @@ def check_word_exists(word):
 # checks if a username already exists in users
 def check_user_exists(username):
     return get_data("SELECT 1 FROM users WHERE username = ?", (username,)) != None
+
+def check_password_matches(username, password):
+    correct_password = get_data("SELECT password FROM users WHERE username = ?", (username,))[0]
+    return password == correct_password
