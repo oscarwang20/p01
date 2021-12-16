@@ -64,6 +64,24 @@ class Cache_manager:
 
 		return self.c.fetchall()[0][0] #gets the cursor items and then extracts the string from the tuple inside a list.
 
+	def synonyms(self, word:str) -> list:
+		'''returns the synonyms for a given word'''
+		self.c.execute("SELECT Synonyms FROM cache WHERE word = ?", (word,))
+		#extracts and returns JSON string
+		JSON = self.c.fetchall()[0][0]
+		JSON = json.loads(JSON)
+
+		return JSON
+
+	def wikipedia_links(self, word:str) -> list:
+		'''returns the wikipedia links for a given word'''
+		self.c.execute("SELECT Synonyms FROM cache WHERE word = ?", (word,))
+		#extracts and returns JSON string then converts to python classes.
+		JSON = self.c.fetchall()[0][0]
+		JSON = json.loads(JSON)
+
+		return JSON
+
 	def __del__(self):
 		'''Saves everything before destructing'''
 		self.db.commit()

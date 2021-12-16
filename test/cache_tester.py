@@ -8,3 +8,5 @@ sys.path.append(path.dirname(path.dirname(path.abspath(__file__)))+ "/app")
 from app import get_links
 
 print(get_links.get_definition("throw"))
+print(get_links.get_synonyms("throw"))
+print(get_links.get_wikipedia_links("throw"))
