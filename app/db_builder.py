@@ -62,7 +62,6 @@ def check_item_exists(table, field, item):
     command = f"SELECT {field} from {table} WHERE {field} = ?"
     c.execute(command, (item,))
     result = c.fetchone()
-    print("result is " + str(result))
 
     db.close()
 
@@ -76,6 +75,7 @@ def insert_user(username, password):
     command = "INSERT INTO users VALUES (?, ?)"
     c.execute(command, (username, password))
 
+    db.commit()
     db.close()
 
 # checks if a word already exists in the cache
