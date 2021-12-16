@@ -57,6 +57,12 @@ class Cache_manager:
 
 		return tuple(self.c.execute("SELECT * FROM cache WHERE word = ?", (word,)))
 
+	def define(self, word:str) -> str:
+		'''Returns the definition for a given word'''
+		self.c.execute("SELECT Definition FROM cache WHERE word = ?", (word,))
+
+		return self.c.fetchall()[0][0] #gets the cursor items and then extracts the string from the tuple inside a list.
+
 	def __del__(self):
 		'''Saves everything before destructing'''
 		self.db.commit()

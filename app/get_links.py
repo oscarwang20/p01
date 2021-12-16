@@ -16,7 +16,7 @@ def get_definition(word: str) -> str:
 	if not cache.is_cached(word):
 		cache.insert_word(word)
 
-	print(cache.retrieve(word))
+	return cache.define(word)
 
 def get_synonyms(word: str) -> list:
 	'''Returns the synonym of a word, if its cached, or retrieves and gets synonyms to a word from an api and caches it.

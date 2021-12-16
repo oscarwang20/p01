@@ -7,4 +7,4 @@ sys.path.append(path.dirname(path.dirname(path.abspath(__file__)))+ "/app")
 #imports from ../app/get_links.py
 from app import get_links
 
-get_links.get_definition("throw")
+print(get_links.get_definition("throw"))
