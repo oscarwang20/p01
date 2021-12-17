@@ -1,5 +1,6 @@
 #tests the caching
 import sys
+import time
 from os import path
 #adds the repo to the sys paths. Gets abs path, gets parent directory, then the parent directory of that to get repo directory.
 sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
@@ -14,7 +15,7 @@ print(get_links.get_wikipedia_links("throw"))
 
 '''For caching check at most 100 api calls should be made.'''
 for i in range(100):
-	sleep(5)
+	time.sleep(5)
 	#gens random word
 	word = get_random_word()
 	print(word)
