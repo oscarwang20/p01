@@ -100,7 +100,7 @@ def get_word_synonyms(word: str) -> list:
 
 	if len(raw) == 0 or isinstance(raw[0], str):#checks if it returned no data OR suggestions for close words (aka it has no data)
 		return []
-	elif raw[0]['meta']['id'] != word: #if the first result (a.k.a closest fit) isn't the word itself, there are no synonyms so we can trash the dataset (this is different from the above as words can be part of sayings that have synonyms but not have synonyms themselves)
+	elif raw[0]['meta']['id'].lower() != word.lower(): #if the first result (a.k.a closest fit) isn't the word itself, there are no synonyms so we can trash the dataset (this is different from the above as words can be part of sayings that have synonyms but not have synonyms themselves)
 		return []
 	else:
 		return raw[0]['meta']['syns'][0] #returns synonyms for most likely definition.

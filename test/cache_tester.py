@@ -14,8 +14,8 @@ print(get_links.get_synonyms("throw"))
 print(get_links.get_wikipedia_links("throw"))
 
 '''For caching check at most 100 api calls should be made.'''
-for i in range(100):
-	time.sleep(5)
+for i in range(10):
+	#time.sleep(5)
 	#gens random word
 	word = get_random_word()
 	print(word)
