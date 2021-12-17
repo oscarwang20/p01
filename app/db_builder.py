@@ -19,7 +19,7 @@ def dbsetup():
     c.execute(command)
 
     c.execute ("DROP TABLE IF EXISTS users")
-    command = "CREATE TABLE users (userID INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT NOT NULL, password TEXT NOT NULL)"
+    command = "CREATE TABLE users (username TEXT PRIMARY KEY, password TEXT NOT NULL)"
     c.execute(command)
 
     c.execute("DROP TABLE IF EXISTS leaderboard")
@@ -55,20 +55,38 @@ def insert_words(searched):
     db.commit()
     db.close()
 
-def check_item_exists(table, field, item):
+def set_data(command, args):
     db = get_db()
     c = db.cursor()
 
-    command = f"SELECT {field} from {table} WHERE {field} = ?"
-    c.execute(command, (word,))
+    c.execute(command, args)
+
+    db.commit()
+    db.close()
+
+def get_data(command, args):
+    db = get_db()
+    c = db.cursor()
+
+    c.execute(command, args)
     result = c.fetchone()
 
     db.close()
 
-    return result is not None
+    return result
+
+# puts the username and password into the users table
+def insert_user(username, password):
+    set_data("INSERT INTO users VALUES (?, ?)", (username, password))
 
 # checks if a word already exists in the cache
 def check_word_exists(word):
-    return check_item_exists("cache", "word", word)
+    return get_data("SELECT 1 FROM cache WHERE word = ?", (word,)) != None
 
-dbsetup()
+# checks if a username already exists in users
+def check_user_exists(username):
+    return get_data("SELECT 1 FROM users WHERE username = ?", (username,)) != None
+
+def check_password_matches(username, password):
+    correct_password = get_data("SELECT password FROM users WHERE username = ?", (username,))[0]
+    return password == correct_password
