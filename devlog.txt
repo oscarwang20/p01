@@ -21,3 +21,5 @@ rengZ -- 2021-12-15 8:35
  - Tried to add caching to get_links.py
 rengZ -- 2021-12-16 8:40
  - Fully implemented testing. Now stress testing
+rengZ -- 2021-12-17 8:40
+ - Caching mostly fixed
