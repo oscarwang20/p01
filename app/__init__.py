@@ -29,19 +29,21 @@ def display_login():
 		password = request.form['password']
 		
 
-# Redirection to the registration page
+# Redirection to the registration page and handles the registration
 @app.route('/register')
 def display_register():
-	return render_template(
-		'register.html'
-	)
+	method = request.method
 
-# Resister a new user and redirect successful registers to the main page
-@app.route('/create_new_user', methods=['GET', 'POST'])
-def register():
-	return render_template(
-		'base.html'
-	)
+	# Viewing the registration page
+	if method == 'GET':
+		return render_template(
+			'register.html'
+		)
+	
+	# User registration and session creation
+	elif method == 'POST':
+		username = request.form['username']
+		password = request.form['password']
 
 # Logout the user and redirect to the main page
 @app.route('/logout')
