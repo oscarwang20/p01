@@ -20,7 +20,7 @@ for i in range(100):
 	#gets attributes that matter
 	defn = get_links.get_definition(word)
 	syn = get_links.get_synonyms(word)
-	wiki = get_link.get_wikipedia_links(word)
+	wiki = get_links.get_wikipedia_links(word)
 
 	for i in range(10):
 		if defn != get_links.get_definition(word):
