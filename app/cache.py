@@ -2,7 +2,7 @@ import json
 import sqlite3
 from api_calls import *
 
-def debug(statement:str, DEBUG=True):
+def debug(statement:str, DEBUG=False):
 	if DEBUG:
 		print(statement)
 
@@ -30,7 +30,7 @@ class Cache_manager:
 		Keyword arguments:
 		word -- the word to be cached'''
 
-		debug("Caching: " + word)
+		#debug("Caching: " + word)
 
 		definition = get_word_definition(word)
 		synonyms = json.dumps(get_word_synonyms(word)) #turns output into a json for sqlite
@@ -38,7 +38,7 @@ class Cache_manager:
 
 		#debug("Def: " + definition)
 		#debug("Synonyms: " + synonyms)
-		debug("Wikipedia: " + wikipedia_links)
+		#debug("Wikipedia: " + wikipedia_links)
 
 		command = "INSERT INTO cache (word, Definition, Synonyms, WikipediaLinks) VALUES (?, ?, ?, ?)"
 		self.c.execute(command, (word, definition, synonyms, wikipedia_links))
