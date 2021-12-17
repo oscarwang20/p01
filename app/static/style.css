@@ -19,6 +19,20 @@ li { font-family: Playfair; }
 a { color: black; font-family: Playfair; }
 a:hover { color: black; font-weight: 800; }
 
+.custom-button {
+	background-color: transparent;
+	color: black;
+	border: 2px solid black;
+	font-family: Playfair;
+	font-weight: 600;
+	border-radius: 5px;
+}
+
+.custom-button:hover {
+	border-color: powderblue;
+	background-color: powderblue;
+}
+
 input[type="text"], input[type="password"] {
 	border: 1px solid gray;
 	border-radius: 5px;
@@ -29,18 +43,4 @@ input[type="text"]:focus, input[type="password"]:focus {
 	box-shadow: 5px 5px powderblue;
 	border-radius: 5px;
 	font-family: Playfair;
-}
-
-input[type="submit"] {
-	background-color: transparent;
-	color: black;
-	border: 2px solid black;
-	font-family: Playfair;
-	font-weight: 600;
-	border-radius: 5px;
-}
-
-input[type="submit"]:hover {
-	border-color: powderblue;
-	background-color: powderblue;
 }
