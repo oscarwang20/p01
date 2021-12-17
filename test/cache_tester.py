@@ -27,5 +27,5 @@ for i in range(100):
 			print("error in caching: defn")
 		elif syn != get_links.get_synonyms(word):
 			print("error in caching: syns")
-		elif wiki != get_wikipedia_links(word):
+		elif wiki != get_links.get_wikipedia_links(word):
 			print("error in caching: wiki")
