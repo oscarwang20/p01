@@ -42,4 +42,4 @@ def get_wikipedia_links(word: str) -> list:
 	Returns a list of links for the wikipedia page of the phrase inputted.'''
 	cache_on_command(word)
 
-	return api_calls.get_wikipedia_links(word)
+	return cache.get_wikipedia_links(word)
