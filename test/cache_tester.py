@@ -6,7 +6,26 @@ sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
 sys.path.append(path.dirname(path.dirname(path.abspath(__file__)))+ "/app")
 #imports from ../app/get_links.py
 from app import get_links
+from app.api_calls import get_random_word
 
 print(get_links.get_definition("throw"))
 print(get_links.get_synonyms("throw"))
 print(get_links.get_wikipedia_links("throw"))
+
+'''For caching check at most 100 api calls should be made.'''
+for i in range(100):
+	#gens random word
+	word = get_random_word()
+	print(word)
+	#gets attributes that matter
+	defn = get_links.get_definition(word)
+	syn = get_links.get_synonyms(word)
+	wiki = get_link.get_wikipedia_links(word)
+
+	for i in range(10):
+		if defn != get_links.get_definition(word):
+			print("error in caching: defn")
+		elif syn != get_links.get_synonyms(word):
+			print("error in caching: syns")
+		elif wiki != get_wikipedia_links(word):
+			print("error in caching: wiki")

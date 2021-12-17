@@ -15,8 +15,8 @@ def key_used(api:str, debug:bool = DEBUG):
 	if debug:
 		print(f"{api} was invoked")
 
-def get_random_word(number: int = 1) -> list:
-	'''Get a random word.
+def get_random_words(number: int = 1) -> list:
+	'''Get a random word list.
 
 	Keyword arguments:
 	number -- the number of expected returns (default 1)
@@ -31,6 +31,10 @@ def get_random_word(number: int = 1) -> list:
 		words.append(r[0]['word']) # extracts only the word data
 
 	return words
+
+def get_random_word() -> str:
+	'''Gets exactly 1 random word'''
+	return get_random_words()[0]
 
 def get_word_dictionary_raw(word: str) -> dict:
 	'''Gets the definition and metadata of a word.
