@@ -46,6 +46,7 @@ def get_word_dictionary_raw(word: str) -> dict:
 	global keys
 	key_used("dictionary")
 
+	word = word.lower()
 	r = http.request('GET', f'https://dictionaryapi.com/api/v3/references/collegiate/json/{word}?key={keys["webster_dictionary"]}') # requests word from dictionary api with provisioned key
 
 	r = r.data #gets json from response
