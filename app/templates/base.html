@@ -11,15 +11,20 @@
     <div class="top-bar">
       <div class="top-bar-left">
         <ul class="dropdown menu" data-dropdown-menu>
-          <li class="menu-text">Word in the Middle</li>
-          <li><a href="#">Dashboard</a></li>
-          <li><a href="#">New Game</a></li>
-          <li><a href="#">Leaderboard</a></li>
+          <li class="menu-text"><h3>Word in the Middle</h3></li>
+          <li style="display: flex;"><a href="#" style="margin: auto;">Dashboard</a></li>
+          <li style="display: flex;"><a href="#" style="margin: auto;">New Game</a></li>
+          <li style="display: flex;"><a href="#" style="margin: auto;">Leaderboard</a></li>
         </ul>
       </div>
       <div class="top-bar-right">
         <ul class="menu">
+          {% if logged_in %}
           <li><a href="/logout">Logout</a></li>
+          {% else %}
+          <li><a href="/login">Login</a></li>
+	  <li><a href="/register">Register</a></li>
+	  {% endif %}
         </ul>
       </div>
     </div>
