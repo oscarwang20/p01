@@ -19,6 +19,13 @@ li { font-family: Playfair; }
 a { color: black; font-family: Playfair; }
 a:hover { color: black; font-weight: 800; }
 
+footer {
+    color: white;
+    font-family: Playfair;
+    padding: 10px 20px;
+    background-color: darkgray;
+}
+
 .custom-button {
 	background-color: transparent;
 	color: black;
