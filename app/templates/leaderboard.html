@@ -4,9 +4,9 @@
 {% block body %}
     <div class="grid-y grid-padding-x">
         {% for user in top_100 %}
-        <div class="small-4 cell grid-x">
-            <h3 class="small-4 cell">{{ user['ranking'] }}</h3>
-            <div class="small-8 cell grid-y align-center" style="background-color: powderblue;">
+        <div class="small-4 cell grid-x" style="margin: 10px 0;">
+            <h3 class="small-2 cell">{{ user['ranking'] }}</h3>
+            <div class="small-10 cell grid-y align-middle" style="background-color: powderblue; padding-left: 30px; border-radius: 5px;">
                 <h4 class="small-6 cell">{{ user['name'] }}</h4>
                 <p class="small-6 cell">Total points: {{ user['points'] }}</p>
             </div>
