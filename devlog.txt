@@ -17,6 +17,9 @@ oscarW -- 2021-12-10 15:00
 - updated README
 - added gitignore for .DS_Store, pycache, and db files
 
+tamiT -- 2021-12-10
+- added basic login page
+
 rengZ -- 2021-12-11 20:00
  - added wikipedia links along with merriam webster api
 
@@ -27,11 +30,18 @@ oscarW -- 2021-12-13 8:45
 - updated README to include launch codes and description
 - created database methods to initialize tables
 
+tamiT -- 2021-12-13
+- added basic register page and new game page
+
 rengZ -- 2021-12-14 8:40
  - Converted DB into an untested class.
 
 oscarW -- 2021-12-14 19:00
 - reworded database tables
+
+tamiT -- 2021-12-14
+- made templates extend from base.html
+- picked fonts
 
 rengZ -- 2021-12-15 8:35
  - Tried to add caching to get_links.py
@@ -41,6 +51,9 @@ oscarW -- 2021-12-15 8:45
 
 rengZ -- 2021-12-16 8:40
  - Fully implemented testing. Now stress testing
+ 
+tamiT -- 2021-12-16
+- added custom CSS and fonts
 
 rengZ -- 2021-12-17 8:40
  - Caching mostly fixed
@@ -50,3 +63,13 @@ rengZ -- 2021-12-17 8:40
 oscarW -- 2021-12-17 8:45
 - added routes for all pages
 - added get and post method verification for login and register pages
+
+tamiT -- 2021-12-17
+- added CSS for nav bar and forms
+
+tamiT -- 2021-12-18
+- added CSS for footer
+
+tamiT -- 2021-12-20
+- added some CSS for leaderboard page
+- added working links to nav bar
