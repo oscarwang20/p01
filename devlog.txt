@@ -51,7 +51,7 @@ oscarW -- 2021-12-15 8:45
 
 rengZ -- 2021-12-16 8:40
  - Fully implemented testing. Now stress testing
- 
+
 tamiT -- 2021-12-16
 - added custom CSS and fonts
 
@@ -73,3 +73,9 @@ tamiT -- 2021-12-18
 tamiT -- 2021-12-20
 - added some CSS for leaderboard page
 - added working links to nav bar
+
+rengZ -- 2021-12-20
+ - Fixed SQL same thread error
+	 - Issues will occur if not serialized correctly in the future
+	 - However it works now because we're actually not having multiple games
+	 - referenced thread: https://stackoverflow.com/questions/48218065/programmingerror-sqlite-objects-created-in-a-thread-can-only-be-used-in-that-sa
