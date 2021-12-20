@@ -1,13 +1,22 @@
 import json
+import os
 import urllib3
 http = urllib3.PoolManager() # general requests manager that the rest of the functions will use.
+#makes it work when importing from a different dir
+abs_path = os.path.dirname(__file__)
 keys = {
-	"webster_dictionary": open("keys/MerriamWebster/Dictionary.key", "r").read().rstrip(),
-	"webster_thesaurus": open("keys/MerriamWebster/Thesaurus.key", "r").read().rstrip(),
+	"webster_dictionary": open(abs_path + "/keys/MerriamWebster/Dictionary.key", "r").read().rstrip(),
+	"webster_thesaurus": open(abs_path + "/keys/MerriamWebster/Thesaurus.key", "r").read().rstrip(),
 }
 
-def get_random_word(number: int = 1) -> list:
-	'''Get a random word.
+#DEBUG stuff
+DEBUG = True
+def key_used(api:str, debug:bool = DEBUG):
+	if debug:
+		print(f"{api} was invoked")
+
+def get_random_words(number: int = 1) -> list:
+	'''Get a random word list.
 
 	Keyword arguments:
 	number -- the number of expected returns (default 1)
@@ -23,6 +32,10 @@ def get_random_word(number: int = 1) -> list:
 
 	return words
 
+def get_random_word() -> str:
+	'''Gets exactly 1 random word'''
+	return get_random_words()[0]
+
 def get_word_dictionary_raw(word: str) -> dict:
 	'''Gets the definition and metadata of a word.
 
@@ -31,7 +44,9 @@ def get_word_dictionary_raw(word: str) -> dict:
 
 	return a doc of the word's attributes.'''
 	global keys
+	key_used("dictionary")
 
+	word = word.lower()
 	r = http.request('GET', f'https://dictionaryapi.com/api/v3/references/collegiate/json/{word}?key={keys["webster_dictionary"]}') # requests word from dictionary api with provisioned key
 
 	r = r.data #gets json from response
@@ -64,6 +79,7 @@ def get_word_thesaurus_raw(word: str) -> dict:
 
 	returns the attributes of the api response for that word'''
 	global keys
+	key_used("thesaurus")
 
 	r = http.request('GET', f'https://dictionaryapi.com/api/v3/references/thesaurus/json/{word}?key={keys["webster_thesaurus"]}')
 
@@ -84,7 +100,7 @@ def get_word_synonyms(word: str) -> list:
 
 	if len(raw) == 0 or isinstance(raw[0], str):#checks if it returned no data OR suggestions for close words (aka it has no data)
 		return []
-	elif raw[0]['meta']['id'] != word: #if the first result (a.k.a closest fit) isn't the word itself, there are no synonyms so we can trash the dataset (this is different from the above as words can be part of sayings that have synonyms but not have synonyms themselves)
+	elif raw[0]['meta']['id'].lower() != word.lower(): #if the first result (a.k.a closest fit) isn't the word itself, there are no synonyms so we can trash the dataset (this is different from the above as words can be part of sayings that have synonyms but not have synonyms themselves)
 		return []
 	else:
 		return raw[0]['meta']['syns'][0] #returns synonyms for most likely definition.
@@ -99,6 +115,7 @@ def get_wikipedia_links(query: str, links:int = 10) -> list:
 	returns all wikipedia links for that specific word and page'''
 	query = query.replace(' ', '%20') #replaces spaces in query with appropriate url codes
 	url = f'https://en.wikipedia.org/w/api.php?format=json&action=query&titles={query}&prop=links&pllimit={links}'
+	key_used("wikipedia")
 
 	r = http.request('GET', url)#gets api response
 	r = r.data#extracts data
