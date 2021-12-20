@@ -74,7 +74,7 @@ tamiT -- 2021-12-20
 - added some CSS for leaderboard page
 - added working links to nav bar
 
-rengZ -- 2021-12-20
+rengZ -- 2021-12-20 8:36
  - Fixed SQL same thread error
 	 - Issues will occur if not serialized correctly in the future
 	 - However it works now because we're actually not having multiple games
