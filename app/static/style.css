@@ -13,8 +13,7 @@ html, body {
 }
 
 h1, h2, h3 { font-family: Abril; }
-label { font-family: Playfair; }
-li { font-family: Playfair; }
+label, li, p, h4 { font-family: Playfair; }
 
 a { color: black; font-family: Playfair; }
 a:hover { color: black; font-weight: 800; }
