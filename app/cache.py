@@ -11,7 +11,7 @@ class Cache_manager:
 	def __init__(self, db_file:str = 'words_cache.db'):
 		'''Sets up requisite db file'''
 		self.db_file = db_file
-		self.db = sqlite3.connect(self.db_file)
+		self.db = sqlite3.connect(self.db_file, check_same_thread=False)
 		self.c = self.db.cursor()
 
 		command = "CREATE TABLE IF NOT EXISTS cache (word TEXT PRIMARY KEY, Definition TEXT NOT NULL, Synonyms TEXT NOT NULL, WikipediaLinks TEXT NOT NULL)"
