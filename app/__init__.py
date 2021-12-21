@@ -53,9 +53,10 @@ def display_logout():
 	)
 	
 @app.route('/game', methods=['GET'])
-def display_new_word_page(word):
+def display_new_word_page():
+	word = get_random_word()
 	session['turns'] = 0
-	session['words'] = list(get_random_word())
+	session['words'] = list(word)
 	
 	return render_template(
 		'word_page.html',
