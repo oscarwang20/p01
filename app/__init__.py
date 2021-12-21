@@ -52,22 +52,16 @@ def display_logout():
 		'index.html'
 	)
 
-# Initial game page
-@app.route('/game', methods=['GET', 'POST'])
-def new_game():
-	session['turns'] = 0
-	session['words'] = list(get_random_word())
-
-	return render_template(
-		'new_game.html'
-	)
-
 # Subsequent game pages with the current word
 @app.route('/game/<word>', methods=['GET'])
 def display_word_page(word):
-	session['turns'] += 1
-	session['words'].append(word)
-
+	try: 
+		session['turns'] += 1
+		session['words'].append(word)
+	except: 
+		session['turns'] = 0
+		session['words'] = list(get_random_word())
+	
 	return render_template(
 		'word_page.html',
 		word = word,
