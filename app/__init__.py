@@ -51,16 +51,25 @@ def display_logout():
 	return render_template(
 		'index.html'
 	)
+	
+@app.route('/game', methods=['GET'])
+def display_new_word_page(word):
+	session['turns'] = 0
+	session['words'] = list(get_random_word())
+	
+	return render_template(
+		'word_page.html',
+		word = word,
+		definition = get_definition(word),
+		synonyms = get_synonyms(word),
+		links = get_wikipedia_links(word)
+	)
 
 # Subsequent game pages with the current word
 @app.route('/game/<word>', methods=['GET'])
 def display_word_page(word):
-	try: 
-		session['turns'] += 1
-		session['words'].append(word)
-	except: 
-		session['turns'] = 0
-		session['words'] = list(get_random_word())
+	session['turns'] += 1
+	session['words'].append(word)
 	
 	return render_template(
 		'word_page.html',
