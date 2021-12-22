@@ -3,32 +3,43 @@
 	<head>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/css/foundation.min.css" crossorigin="anonymous">
+		<link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
 		<title>That Word Game</title>
 	</head>
 	<body>
-		<h1>{{ word }}</h1>
-		<h2>Definition: {{ definition }}</h2>
-
-		<div class="card">
-			<h3 class="card-divider">Synonyms</h3>
-			<div class="card-section grid-x">
-				{% for synonym in synonyms %}
-					<div class='small-3 cell'><a href="/game/{{ synonym }}">{{ synonym }}</a></div>
-				{% endfor %}
+		<div class="grid-y grid-padding-x align-middle">
+			<div class="grid-y align-center-middle cell" style="background-color: powderblue; padding: 10px 0;">
+				<h4>Player #{{ player_number }}</h4>
+				<p>Turn #{{ turn_number }}</p>
 			</div>
-		</div>
+			
+			<h1>{{ word }}</h1>
+			<h2>Definition: {{ definition }}</h2>
 
-		<div class="card">
-			<h3 class="card-divider">Wikipedia Links</h3>
-			<div class="card-section grid-x">
-				{% for link in links %}
-					<div class="small-4 cell"><a href="/game/{{ link }}">{{ link }}</a></div>
-				{% endfor %}
+			<div class="card cell" style="border: none">
+				<h3 class="card-divider">Synonyms</h3>
+				<div class="card-section grid-x">
+					{% for synonym in synonyms %}
+						<div class='small-3 cell'><a href="/game/{{ synonym }}">{{ synonym }}</a></div>
+					{% endfor %}
+				</div>
 			</div>
-		</div>
 
-		<div class="button">
-			<h3><a href="/back" style="color: gainsboro">{{ last_word }}</a></h3>
+			<div class="card cell" style="border: none">
+				<h3 class="card-divider">Wikipedia Links</h3>
+				<div class="card-section grid-x">
+					{% for link in links %}
+						<div class="small-4 cell"><a href="/game/{{ link }}">{{ link }}</a></div>
+					{% endfor %}
+				</div>
+			</div>
+
+			<a class="button custom-button" href="/back">
+				{{ last_word }}
+			</a>
+			<a class="button custom-button" href="#">
+				Refresh
+			</a>
 		</div>
 	</body>
 </html>

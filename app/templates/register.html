@@ -4,12 +4,7 @@
         <title>{% block title %}{% endblock %}</title>
         <meta charset="utf-8">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/css/foundation.min.css" crossorigin="anonymous">
-        
-        <style>
-            html, body {
-                height: 100%;
-            }
-        </style>
+        <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
   </head>
     <body>
         <div class="top-bar">
@@ -36,7 +31,7 @@
                     <input type="password" placeholder="Confirm you password">
                 </div>
                 <div class="large-12 cell grid-x align-center">
-                    <input type="submit" class="button" id="submit">
+                    <input type="submit" class="button custom-button" id="submit">
                 </div>
             </div>
         </form>

@@ -51,28 +51,15 @@ def display_logout():
 	return render_template(
 		'index.html'
 	)
-
-# Initial game page
-@app.route('/game', methods=['GET', 'POST'])
-def new_game():
+	
+@app.route('/game', methods=['GET'])
+def display_new_word_page():
+	word = get_random_word()
+#	starting_options = get_random_words(3)
+	
 	session['turns'] = 0
 	session['words'] = list()
-
-	starting_options = get_random_words(3)
-	target = get_random_word()
-
-	return render_template(
-		'new_game.html',
-		target = target,
-		words = starting_options,
-	)
-
-# Subsequent game pages with the current word
-@app.route('/game/<word>', methods=['GET'])
-def display_word_page(word):
-	session['turns'] += 1
-	session['words'].append(word)
-
+	
 	return render_template(
 		'word_page.html',
 		word = word,
@@ -80,6 +67,31 @@ def display_word_page(word):
 		synonyms = get_synonyms(word),
 		links = get_wikipedia_links(word)
 	)
+
+# Subsequent game pages with the current word
+@app.route('/game/<word>', methods=['GET'])
+def display_word_page(word):
+	session['turns'] += 1
+	session['words'].append(word)
+	
+	return render_template(
+		'word_page.html',
+		word = word,
+		definition = get_definition(word),
+		synonyms = get_synonyms(word),
+		links = get_wikipedia_links(word)
+	)
+	
+@app.route('/leaderboard')
+def display_leaderboard():
+	return render_template(
+		'leaderboard.html',
+		top_100 = [
+			{'name': 'user', 'points': 123456789, 'ranking': 1},
+			{'name': 'other', 'points': 12345678, 'ranking': 2}
+		]
+	)
+	
 # Handles errors when a user visits a page they're not supposed to
 @app.errorhandler(404)
 def page_not_found(e):
