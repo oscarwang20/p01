@@ -82,6 +82,10 @@ rengZ -- 2021-12-20 8:36
 
 rengZ -- 2021-12-21 8:40
  - Fixed error with cache returning wikipedia links
- 
+
  tamiT -- 2021-12-21
  - added CSS for word page
+
+rengZ -- 2021-12-22 8:38
+ - Adds wikipedia's description for a thing if a definition doesnt
+exist.
