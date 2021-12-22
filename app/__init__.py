@@ -80,7 +80,7 @@ def display_word_page(word):
 	return render_template(
 		'word_page.html',
 		word = word,
-		target = session['session'],
+		target = session['target'],
 		definition = get_definition(word),
 		synonyms = get_synonyms(word),
 		links = get_wikipedia_links(word)
