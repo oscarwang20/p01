@@ -64,7 +64,11 @@ def get_word_definition(word: str) -> str:
 
 	raw = get_word_dictionary_raw(word)
 	if len(raw) == 0 or isinstance(raw[0], str):#checks if it returned no data OR suggestions for words (aka it has no data)
-		return 'There is no definition available.'
+		wiki_desc = get_wikipedia_desc(word)
+		if wiki_desc == None: #if a wikipedia description exists return that, if not don't.
+			return 'There is no definition available.'
+		else:
+			return wiki_desc
 	else:
 		raw = raw[0] #extracts the most common definition of the word
 		raw = raw['shortdef'] #gets the quick definitions
@@ -104,6 +108,31 @@ def get_word_synonyms(word: str) -> list:
 		return []
 	else:
 		return raw[0]['meta']['syns'][0] #returns synonyms for most likely definition.
+
+def get_wikipedia_desc(query:str) -> str:
+	'''Gets the wikipedia description for a query
+
+	Keyword arguments:
+	query -- the current page we're on in the game
+
+	Retursn the description wikipedia has for that page'''
+	query = query.replace(' ', '%20') #gets appropriate url codes for api query
+	url = f'https://en.wikipedia.org/w/api.php?format=json&action=query&titles={query}&prop=description'
+
+	r = http.request('GET', url)
+	r = r.data
+	r = json.loads(r)
+	r = r['query']
+	r = r['pages']
+
+	if '-1' in r.keys(): #no pages found
+		return None
+	else:
+		r = r[list(r.keys())[0]]#extracts the most relevant page
+		if 'description' not in r.keys(): #if it has no description return none
+			return None
+		else:
+			return r['description']
 
 def get_wikipedia_links(query: str, links:int = 10) -> list:
 	'''Gets wikipedia links to a word.
