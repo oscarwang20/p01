@@ -55,14 +55,18 @@ def display_logout():
 @app.route('/game', methods=['GET'])
 def display_new_word_page():
 	word = get_random_word()
+	target = get_random_word()
 #	starting_options = get_random_words(3)
 	
 	session['turns'] = 0
 	session['words'] = list()
+	session['target'] = target
 	
 	return render_template(
 		'word_page.html',
 		word = word,
+		target = target,
+		target_definition = get_definition(target),
 		definition = get_definition(word),
 		synonyms = get_synonyms(word),
 		links = get_wikipedia_links(word)
@@ -77,9 +81,12 @@ def display_word_page(word):
 	return render_template(
 		'word_page.html',
 		word = word,
+		target = session['target'],
+		target_definition = get_definition(session['target']),
 		definition = get_definition(word),
 		synonyms = get_synonyms(word),
-		links = get_wikipedia_links(word)
+		links = get_wikipedia_links(word),
+		last_word = session['words'][-1]
 	)
 	
 @app.route('/leaderboard')

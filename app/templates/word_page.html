@@ -14,7 +14,11 @@
 			</div>
 			
 			<h1>{{ word }}</h1>
-			<h2>Definition: {{ definition }}</h2>
+			<p style="text-align: center;">Definition: {{ definition }}</p>
+			
+			<h4 style="margin-top: 10px;">Target Word:</h4>
+			<h1 style="color: blue;">{{ target }}</h1>
+			<p style="text-align: center;">Definition: {{ target_definition }}</p>
 
 			<div class="card cell" style="border: none">
 				<h3 class="card-divider">Synonyms</h3>
@@ -33,10 +37,12 @@
 					{% endfor %}
 				</div>
 			</div>
-
+			
+			{% if last_word %}
 			<a class="button custom-button" href="/back">
 				{{ last_word }}
 			</a>
+			{% endif %}
 			<a class="button custom-button" href="#">
 				Refresh
 			</a>
