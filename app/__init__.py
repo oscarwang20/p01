@@ -69,7 +69,8 @@ def display_new_word_page():
 		target_definition = get_definition(target),
 		definition = get_definition(word),
 		synonyms = get_synonyms(word),
-		links = get_wikipedia_links(word)
+		links = get_wikipedia_links(word),
+		turn_number = 1
 	)
 
 # Subsequent game pages with the current word
@@ -86,7 +87,8 @@ def display_word_page(word):
 		definition = get_definition(word),
 		synonyms = get_synonyms(word),
 		links = get_wikipedia_links(word),
-		last_word = session['words'][-1]
+		last_word = session['words'][-1],
+		turn_number = session['turns'] + 1
 	)
 	
 @app.route('/leaderboard')
