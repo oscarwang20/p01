@@ -66,6 +66,7 @@ def display_new_word_page():
 		'word_page.html',
 		word = word,
 		target = target,
+		target_definition = get_definition(target),
 		definition = get_definition(word),
 		synonyms = get_synonyms(word),
 		links = get_wikipedia_links(word)
@@ -81,9 +82,11 @@ def display_word_page(word):
 		'word_page.html',
 		word = word,
 		target = session['target'],
+		target_definition = get_definition(session['target']),
 		definition = get_definition(word),
 		synonyms = get_synonyms(word),
-		links = get_wikipedia_links(word)
+		links = get_wikipedia_links(word),
+		last_word = session['words'][-1]
 	)
 	
 @app.route('/leaderboard')
