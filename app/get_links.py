@@ -7,6 +7,9 @@ def cache_on_command(word:str) -> None:
 	if not cache.is_cached(word):
 		cache.insert_word(word)
 
+def get_random_words(num:int) -> list:
+	return api_calls.get_random_words(num)
+
 def get_random_word() -> str:
 	return api_calls.get_random_word()
 

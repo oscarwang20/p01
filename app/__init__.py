@@ -22,12 +22,12 @@ def display_login():
 		return render_template(
 			'login.html'
 		)
-	
+
 	# User authentication and session creation
 	elif method == 'POST':
 		username = request.form['username']
 		password = request.form['password']
-		
+
 
 # Redirection to the registration page and handles the registration
 @app.route('/register')
@@ -39,7 +39,7 @@ def display_register():
 		return render_template(
 			'register.html'
 		)
-	
+
 	# User registration and session creation
 	elif method == 'POST':
 		username = request.form['username']
@@ -55,8 +55,10 @@ def display_logout():
 @app.route('/game', methods=['GET'])
 def display_new_word_page():
 	word = get_random_word()
+#	starting_options = get_random_words(3)
+	
 	session['turns'] = 0
-	session['words'] = list(word)
+	session['words'] = list()
 	
 	return render_template(
 		'word_page.html',

@@ -2,7 +2,7 @@ import json
 import sqlite3
 from api_calls import *
 
-def debug(statement:str, DEBUG=False):
+def debug(statement:str, DEBUG=True):
 	if DEBUG:
 		print(statement)
 
@@ -75,7 +75,7 @@ class Cache_manager:
 
 	def wikipedia_links(self, word:str) -> list:
 		'''returns the wikipedia links for a given word'''
-		self.c.execute("SELECT Synonyms FROM cache WHERE word = ?", (word,))
+		self.c.execute("SELECT WikipediaLinks FROM cache WHERE word = ?", (word,))
 		#extracts and returns JSON string then converts to python classes.
 		JSON = self.c.fetchall()[0][0]
 		JSON = json.loads(JSON)
