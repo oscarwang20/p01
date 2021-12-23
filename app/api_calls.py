@@ -134,7 +134,7 @@ def get_wikipedia_desc(query:str) -> str:
 		else:
 			return r['description']
 
-def get_wikipedia_links(query: str, links:int = 10) -> list:
+def get_wikipedia_links(query: str, links:int = 'max') -> list:
 	'''Gets wikipedia links to a word.
 
 	Keyword arguments:
