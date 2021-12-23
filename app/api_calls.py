@@ -73,7 +73,7 @@ def get_word_definition(word: str) -> str:
 		raw = raw[0] #extracts the most common definition of the word
 		raw = raw['shortdef'] #gets the quick definitions
 
-		return raw[0] #gets the most popular short defintion
+		return raw[0] #gets the most popular short definition
 
 def get_word_thesaurus_raw(word: str) -> dict:
 	'''Gets MerriamWebster's raw synonyms archive for a word.
