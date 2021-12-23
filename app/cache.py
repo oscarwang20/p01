@@ -2,7 +2,7 @@ import json
 import sqlite3
 from api_calls import *
 
-def debug(statement:str, DEBUG=True):
+def debug(statement:str, DEBUG=False):
 	if DEBUG:
 		print(statement)
 

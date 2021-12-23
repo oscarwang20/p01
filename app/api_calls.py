@@ -10,7 +10,7 @@ keys = {
 }
 
 #DEBUG stuff
-DEBUG = True
+DEBUG = False
 def key_used(api:str, debug:bool = DEBUG):
 	if debug:
 		print(f"{api} was invoked")
