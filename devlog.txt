@@ -83,8 +83,13 @@ rengZ -- 2021-12-20 8:36
 rengZ -- 2021-12-21 8:40
  - Fixed error with cache returning wikipedia links
 
- tamiT -- 2021-12-21
- - added CSS for word page
+tamiT -- 2021-12-21
+- added CSS for word page
 
 rengZ -- 2021-12-22 8:38
  - Adds wikipedia's description for a thing if a definition doesnt exist.
+
+tamiT -- 2021-12-22
+- merged front_end into main
+- modified new game (/game) route to use word_page template
+- added more vars to display on word_page
