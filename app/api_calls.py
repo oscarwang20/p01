@@ -15,6 +15,10 @@ def key_used(api:str, debug:bool = DEBUG):
 	if debug:
 		print(f"{api} was invoked")
 
+def debug(msg:str, debug:bool = DEBUG):
+	if debug:
+		print(msg)
+
 def get_random_words(number: int = 1) -> list:
 	'''Get a random word list.
 
@@ -142,22 +146,22 @@ def get_wikipedia_links(query: str, links:int = 'max') -> list:
 	links -- the number of links you want in your query
 
 	returns all wikipedia links for that specific word and page'''
-	url = f'https://en.wikipedia.org/w/api.php?format=json&action=query&titles={query}&prop=links&pllimit={links}'
 	key_used("wikipedia")
 
-	next_page = None #defn var
 	link_list = []
 
-	while next_page is not '':
-		query = query.replace(' ', '%20') #replaces spaces in query with appropriate url codes
+	debug(query)
+	query = query.replace(' ', '%20') #replaces spaces in query with appropriate url codes
+	url = f'https://en.wikipedia.org/w/api.php?format=json&action=query&titles={query}&prop=links&pllimit={links}'
 
+	while url is not '':
 		r = http.request('GET', url)#gets api response
 		r = r.data#extracts data
 		r = json.loads(r)#loads the json
-		if 'continue' in r.keys() and 'plcontinue' in r['continue'].keys(): #gets the next page pointer if it exists
-			next_page = r['continue']['plcontinue']
+		if 'batchcomplete' not in r.keys(): #gets the next page pointer if it exists
+			url = f'https://en.wikipedia.org/w/api.php?format=json&action=query&titles={query}&prop=links&pllimit={links}&plcontinue={r["continue"]["plcontinue"]}'
 		else:
-			next_page = ''
+			url = ''
 		r = r['query']#extracts main chunk of data from json
 		r = r['pages']#extracts pages concerning this topic
 
@@ -170,8 +174,8 @@ def get_wikipedia_links(query: str, links:int = 'max') -> list:
 			for link in r:#extracts title data from the api
 				link_list.append(link['title'])
 
-		query = next_page
 
+	debug(len(link_list))
 	return link_list
 ##print(get_random_word(2))
 ##print(get_word_definition('sdadasd'))
