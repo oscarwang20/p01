@@ -142,27 +142,37 @@ def get_wikipedia_links(query: str, links:int = 'max') -> list:
 	links -- the number of links you want in your query
 
 	returns all wikipedia links for that specific word and page'''
-	query = query.replace(' ', '%20') #replaces spaces in query with appropriate url codes
 	url = f'https://en.wikipedia.org/w/api.php?format=json&action=query&titles={query}&prop=links&pllimit={links}'
 	key_used("wikipedia")
 
-	r = http.request('GET', url)#gets api response
-	r = r.data#extracts data
-	r = json.loads(r)#loads the json
-	r = r['query']#extracts main chunk of data from json
-	r = r['pages']#extracts pages concerning this topic
+	next_page = None #defn var
+	link_list = []
 
-	if '-1' in r.keys(): #checks for the no page error return. If its present, return nothing as we don't have a page on it.
-		return []
-	else:
-		r = r[list(r.keys())[0]]#extracts the most relevant page's links
-		r = r['links']#extracts links in the page
+	while next_page is not '':
+		query = query.replace(' ', '%20') #replaces spaces in query with appropriate url codes
 
-		links = list()
-		for link in r:#extracts title data from the api
-			links.append(link['title'])
+		r = http.request('GET', url)#gets api response
+		r = r.data#extracts data
+		r = json.loads(r)#loads the json
+		if 'continue' in r.keys() and 'plcontinue' in r['continue'].keys(): #gets the next page pointer if it exists
+			next_page = r['continue']['plcontinue']
+		else:
+			next_page = ''
+		r = r['query']#extracts main chunk of data from json
+		r = r['pages']#extracts pages concerning this topic
 
-		return links
+		if '-1' in r.keys(): #checks for the no page error return. If its present, return nothing as we don't have a page on it.
+			return link_list
+		else:
+			r = r[list(r.keys())[0]]#extracts the most relevant page's links
+			r = r['links']#extracts links in the page
+
+			for link in r:#extracts title data from the api
+				link_list.append(link['title'])
+
+		query = next_page
+
+	return link_list
 ##print(get_random_word(2))
 ##print(get_word_definition('sdadasd'))
 ##print(get_word_synonyms('sdadasd'))
