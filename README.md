@@ -5,7 +5,7 @@ SoftDev
 P01: ArRESTed Development  
 
 # Roles
-Tami: Frontend, word generation  
+Tami: Frontend, login/register 
 Oscar: Database  
 Reng: API calls  
 Tomas: Leaderboard  
