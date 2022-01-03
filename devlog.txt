@@ -93,3 +93,6 @@ tamiT -- 2021-12-22
 - merged front_end into main
 - modified new game (/game) route to use word_page template
 - added more vars to display on word_page
+
+rengZ -- 2022-01-03 09:14
+ - Made a DFS search for a valid end word that has a connection to the initial word
