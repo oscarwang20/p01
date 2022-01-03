@@ -11,7 +11,7 @@ def index():
 	db_builder.dbsetup()
 	return render_template(
 		'index.html',
-		logged_in = session['username'] is not None
+		logged_in = 'username' in session
 	)
 
 # Redirection to the login page and handles the login
@@ -46,7 +46,9 @@ def display_register():
 	# Viewing the registration page
 	if method == 'GET':
 		return render_template(
-			'register.html'
+			'register.html',
+			pass_match = True,
+			unique_name = True
 		)
 
 	# User registration and session creation
@@ -55,16 +57,24 @@ def display_register():
 		password = request.form['password']
 		confirm = request.form['confirm']
 
-		if password == confirm and not db_builder.check_user_exists(username):
+		unique_name = not db_builder.check_user_exists(username)
+		password_match = password == confirm
+
+		if password_match and unique_name:
 			db_builder.insert_user(username, password)
 			return redirect(url_for('display_login'))
+		else:
+			return render_template(
+				'register.html',
+				pass_match = password_match,
+				unique_name = unique_name
+			)
 
 # Logout the user and redirect to the main page
 @app.route('/logout')
 def display_logout():
-	return render_template(
-		'index.html'
-	)
+	session.pop('username')
+	return redirect('/')
 
 @app.route('/game', methods=['GET'])
 def display_new_word_page():
