@@ -88,5 +88,8 @@ def check_password_matches(username, password):
     correct_password = get_data("SELECT password FROM users WHERE username = ?", (username,))
     return correct_password and password == correct_password[0]
 
+def get_points(username):
+    return get_data("SELECT points FROM users WHERE username = ?", (username,))[0]
+
 def overwrite_points(username, points):
     set_data("UPDATE users SET points = ?, WHERE username = ?", (points, username))
