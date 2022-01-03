@@ -51,17 +51,18 @@ def display_logout():
 	return render_template(
 		'index.html'
 	)
-	
+
 @app.route('/game', methods=['GET'])
 def display_new_word_page():
-	word = get_random_word()
-	target = get_random_word()
+	word_set = get_links.generate_start_end()
+	word = word[0]
+	target = word[1]
 #	starting_options = get_random_words(3)
-	
+
 	session['turns'] = 0
 	session['words'] = list()
 	session['target'] = target
-	
+
 	return render_template(
 		'word_page.html',
 		word = word,
@@ -78,7 +79,7 @@ def display_new_word_page():
 def display_word_page(word):
 	session['turns'] += 1
 	session['words'].append(word)
-	
+
 	return render_template(
 		'word_page.html',
 		word = word,
@@ -90,7 +91,7 @@ def display_word_page(word):
 		last_word = session['words'][-1],
 		turn_number = session['turns'] + 1
 	)
-	
+
 @app.route('/leaderboard')
 def display_leaderboard():
 	return render_template(
@@ -100,7 +101,7 @@ def display_leaderboard():
 			{'name': 'other', 'points': 12345678, 'ranking': 2}
 		]
 	)
-	
+
 # Handles errors when a user visits a page they're not supposed to
 @app.errorhandler(404)
 def page_not_found(e):
