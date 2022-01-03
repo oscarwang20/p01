@@ -96,3 +96,7 @@ tamiT -- 2021-12-22
 
 rengZ -- 2022-01-03 09:14
  - Made a DFS search for a valid end word that has a connection to the initial word
+ 
+tamiT -- 2022-01-03
+- cleaned up game (added ending page, turned into single player, added points calculations, modified database)
+- added login/register functionality
