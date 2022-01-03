@@ -23,6 +23,9 @@ the middle first, determined by their total score at the end of the
 game, which is calculated by
 the total number of turns they took.
 
+# API Cards
+- Merriam-Webster: https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_MerriamWebster.md
+
 # Launch Codes
 Make sure you have python3 and pip3 installed on your computer
 
