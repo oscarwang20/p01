@@ -23,7 +23,8 @@ game is calculated by
 the total number of turns the user took.
 
 # API Cards
-- Merriam-Webster: https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_MerriamWebster.md
+- [Merriam-Webster](https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_MerriamWebster.md)
+- [Datamuse](https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_Datamuse.md)
 
 # Launch Codes
 Make sure you have python3 and pip3 installed on your computer
