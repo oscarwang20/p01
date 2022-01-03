@@ -9,9 +9,14 @@ app.secret_key = "a very ADVENTageous key"
 @app.route('/')
 def index():
 	db_builder.dbsetup()
+	logged_in = 'username' in session
+	points = -1
+	if logged_in:
+		points = db_builder.get_points(session['username'])
 	return render_template(
 		'index.html',
-		logged_in = 'username' in session
+		logged_in = logged_in,
+		points = points
 	)
 
 # Redirection to the login page and handles the login
