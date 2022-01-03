@@ -18,19 +18,23 @@
         <div class="grid-x grid-padding-x align-center">
             <h2>Login</h2>
         </div>
-        <form style="padding: 20px;" id="flavor-form" action="/auth">
+        <form style="padding: 20px;" id="flavor-form" method="post">
             <div class="grid-y grid-padding-x">
                 <div class="small-6 cell">
                     <label>Username</label>
-                    <input type="text" placeholder="Enter your username">
+                    <input name="username" type="text" placeholder="Enter your username">
                 </div>
                 <div class="small-6 cell">
                     <label>Password</label>
-                    <input type="password" placeholder="Enter your password">
+                    <input name="password" type="password" placeholder="Enter your password">
                 </div>
                 <div class="large-12 cell grid-x align-center">
                     <input type="submit" class="button custom-button" id="submit">
                 </div>
+
+                {% if fail %}
+                <p style="color: red;">Login information invalid</p>
+                {% endif %}
             </div>
         </form>
         </div>

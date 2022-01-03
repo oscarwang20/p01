@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/css/foundation.min.css" crossorigin="anonymous">
+		<link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+		<title>That Word Game</title>
+	</head>
+	<body>
+		<div class="grid-y grid-padding-x align-middle" style="padding-top: 40px;">
+            <h1>Congratulations!</h1>
+            <h4>{{ points }} points earned!</h4>
+            <p style="padding-bottom: 20px;">You took {{ turn_number }} turns to solve this puzzle</p>
+			
+			<a href="/game" class="button custom-button">Play again</a>
+            <a href="/" class="button custom-button">Go to Home</a>
+		</div>
+	</body>
+</html>

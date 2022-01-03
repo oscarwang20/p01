@@ -16,19 +16,19 @@
         </div>
         <div style="padding: 30px 0;">
         <div class="grid-x grid-padding-x align-center"><h2>Register</h2></div>
-        <form style="padding: 20px;" id="flavor-form" action="/create_new_user">
+        <form style="padding: 20px;" id="flavor-form" method="post">
             <div class="grid-y grid-padding-x">
                 <div class="large-3 cell">
                     <label>Username</label>
-                    <input type="text" placeholder="Enter your username">
+                    <input name="username" type="text" placeholder="Enter your username">
                 </div>
                 <div class="large-3 cell">
                     <label>Password</label>
-                    <input type="password" placeholder="Enter your password">
+                    <input name="password" type="password" placeholder="Enter your password">
                 </div>
                 <div class="large-3 cell">
                     <label>Confirm Password</label>
-                    <input type="password" placeholder="Confirm you password">
+                    <input name="confirm" type="password" placeholder="Confirm you password">
                 </div>
                 <div class="large-12 cell grid-x align-center">
                     <input type="submit" class="button custom-button" id="submit">
