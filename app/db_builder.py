@@ -14,16 +14,13 @@ def dbsetup():
     # command = "CREATE TABLE cache (word TEXT PRIMARY KEY, Date TEXT NOT NULL, Definition TEXT NOT NULL, Synonyms TEXT NOT NULL, WikipediaLinks TEXT NOT NULL)"
     # c.execute(command)
 
-    c.execute("DROP TABLE IF EXISTS cache")
-    command = "CREATE TABLE cache (word TEXT PRIMARY KEY, definition TEXT NOT NULL, synonyms TEXT NOT NULL, wikipediaLinks TEXT NOT NULL)"
+    command = "CREATE TABLE IF NOT EXISTS cache (word TEXT PRIMARY KEY, definition TEXT NOT NULL, synonyms TEXT NOT NULL, wikipediaLinks TEXT NOT NULL)"
     c.execute(command)
 
-    c.execute ("DROP TABLE IF EXISTS users")
-    command = "CREATE TABLE users (username TEXT PRIMARY KEY, password TEXT NOT NULL, points INTEGER)"
+    command = "CREATE TABLE IF NOT EXISTS users (username TEXT PRIMARY KEY, password TEXT NOT NULL, points INTEGER)"
     c.execute(command)
 
-    c.execute("DROP TABLE IF EXISTS leaderboard")
-    command = "CREATE TABLE leaderboard (hash TEXT PRIMARY KEY, word1 TEXT NOT NULL, word2 TEXT NOT NULL, targetWord TEXT NOT NULL, scores TEXT NOT NULL)"
+    command = "CREATE TABLE IF NOT EXISTS leaderboard (hash TEXT PRIMARY KEY, word1 TEXT NOT NULL, word2 TEXT NOT NULL, targetWord TEXT NOT NULL, scores TEXT NOT NULL)"
     c.execute(command)
 
     db.commit()
