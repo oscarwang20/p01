@@ -18,12 +18,12 @@ def key_used(api:str, debug:bool = DEBUG):
 def debug(msg:str, debug:bool = DEBUG):
 	if debug:
 		print(msg)
-		
+
 def is_word_frequent(word: str) -> bool:
 	fr = http.request('GET', f'https://api.datamuse.com/words?sp={word}&md=f&max=1')
 	fr = fr.data
 	fr = json.loads(fr)
-	
+
 	return fr and (fr[0]['score'] > 100000) # must appear at least 100k times per million words
 
 def get_word() -> str:
@@ -185,10 +185,11 @@ def get_wikipedia_links(query: str, links:int = 'max') -> list:
 			return link_list
 		else:
 			r = r[list(r.keys())[0]]#extracts the most relevant page's links
-			r = r['links']#extracts links in the page
+			if links in r.keys():
+				r = r['links']#extracts links in the page
 
-			for link in r:#extracts title data from the api
-				link_list.append(link['title'])
+				for link in r:#extracts title data from the api
+					link_list.append(link['title'])
 
 
 	debug(len(link_list))
