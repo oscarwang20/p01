@@ -19,7 +19,7 @@ def dbsetup():
     c.execute(command)
 
     c.execute ("DROP TABLE IF EXISTS users")
-    command = "CREATE TABLE users (username TEXT PRIMARY KEY, password TEXT NOT NULL)"
+    command = "CREATE TABLE users (username TEXT PRIMARY KEY, password TEXT NOT NULL, points INTEGER)"
     c.execute(command)
 
     c.execute("DROP TABLE IF EXISTS leaderboard")
@@ -77,7 +77,7 @@ def get_data(command, args):
 
 # puts the username and password into the users table
 def insert_user(username, password):
-    set_data("INSERT INTO users VALUES (?, ?)", (username, password))
+    set_data("INSERT INTO users VALUES (?, ?, ?)", (username, password, 0))
 
 # checks if a word already exists in the cache
 def check_word_exists(word):
@@ -88,5 +88,8 @@ def check_user_exists(username):
     return get_data("SELECT 1 FROM users WHERE username = ?", (username,)) != None
 
 def check_password_matches(username, password):
-    correct_password = get_data("SELECT password FROM users WHERE username = ?", (username,))[0]
-    return password == correct_password
+    correct_password = get_data("SELECT password FROM users WHERE username = ?", (username,))
+    return correct_password and password == correct_password[0]
+
+def overwrite_points(username, points):
+    set_data("UPDATE users SET points = ?, WHERE username = ?", (points, username))
