@@ -107,10 +107,12 @@ def display_new_word_page():
 @app.route('/game/<word>', methods=['GET'])
 def display_word_page(word):
 	if word == session['target']:
+		points = int(100000 / session['turns'])
+		db_builder.add_points(session['username'], points)
 		return render_template(
 			'result.html',
 			turn_number = session['turns'],
-			points = int(100000 / session['turns'])
+			points = points
 		)
 	else:
 		session['turns'] += 1
