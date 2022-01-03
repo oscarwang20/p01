@@ -55,8 +55,8 @@ def display_logout():
 @app.route('/game', methods=['GET'])
 def display_new_word_page():
 	word_set = generate_start_end()
-	word = word[0]
-	target = word[1]
+	word = word_set[0]
+	target = word_set[1]
 #	starting_options = get_random_words(3)
 
 	session['turns'] = 0
