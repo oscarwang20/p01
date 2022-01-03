@@ -11,17 +11,16 @@ Reng: API calls
 Tomas: Leaderboard  
 
 # Description
-Two players (local on one computer) will be assigned one randomly generated "word in the
-middle" by the Random Word API. They will also individually be given two distinct, also
+The user will be assigned one randomly generated "word in the
+middle" by the Random Word API. They will also be given two distinct, also
 randomly generated, starting words and a selection of related words that appear as links.
 Related words are any words that appear as synonyms for the current word given by the
 Thesaurus API, and as links in the current word's Wikipedia entry given by the Wikipedia API.
 
 The aim of the game is to get closer to the word in the middle by strategically choosing words
-that relate to the previous word. The winner of the game the player that reaches the word
-the middle first, determined by their total score at the end of the
-game, which is calculated by
-the total number of turns they took.
+that relate to the previous word. The total score at the end of the
+game is calculated by
+the total number of turns the user took.
 
 # API Cards
 - Merriam-Webster: https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_MerriamWebster.md
