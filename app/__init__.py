@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for, session
+from flask import Flask, render_template, request, url_for, session, redirect
 from get_links import *
 import db_builder
 
@@ -8,12 +8,14 @@ app.secret_key = "a very ADVENTageous key"
 # Landing page for new users and logged out users
 @app.route('/')
 def index():
+	db_builder.dbsetup()
 	return render_template(
-		'index.html'
+		'index.html',
+		logged_in = session['username'] is not None
 	)
 
 # Redirection to the login page and handles the login
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def display_login():
 	method = request.method
 
@@ -27,10 +29,17 @@ def display_login():
 	elif method == 'POST':
 		username = request.form['username']
 		password = request.form['password']
-
+		if db_builder.check_password_matches(username, password):
+			session['username'] = username
+			return redirect(url_for('index'))
+		else:
+			return render_template(
+				'login.html',
+				fail = True	
+			)
 
 # Redirection to the registration page and handles the registration
-@app.route('/register')
+@app.route('/register', methods=['GET', 'POST'])
 def display_register():
 	method = request.method
 
@@ -44,6 +53,11 @@ def display_register():
 	elif method == 'POST':
 		username = request.form['username']
 		password = request.form['password']
+		confirm = request.form['confirm']
+
+		if password == confirm and not db_builder.check_user_exists(username):
+			db_builder.insert_user(username, password)
+			return redirect(url_for('display_login'))
 
 # Logout the user and redirect to the main page
 @app.route('/logout')
@@ -77,19 +91,26 @@ def display_new_word_page():
 # Subsequent game pages with the current word
 @app.route('/game/<word>', methods=['GET'])
 def display_word_page(word):
-	session['turns'] += 1
-	session['words'].append(word)
+	if word == session['target']:
+		return render_template(
+			'result.html',
+			turn_number = session['turns'],
+			points = int(100000 / session['turns'])
+		)
+	else:
+		session['turns'] += 1
+		session['words'].append(word)
 
-	return render_template(
-		'word_page.html',
-		word = word,
-		target = session['target'],
-		target_definition = get_definition(session['target']),
-		definition = get_definition(word),
-		synonyms = get_synonyms(word),
-		links = get_wikipedia_links(word),
-		turn_number = session['turns'] + 1
-	)
+		return render_template(
+			'word_page.html',
+			word = word,
+			target = session['target'],
+			target_definition = get_definition(session['target']),
+			definition = get_definition(word),
+			synonyms = get_synonyms(word),
+			links = get_wikipedia_links(word),
+			turn_number = session['turns'] + 1
+		)
 
 @app.route('/leaderboard')
 def display_leaderboard():
@@ -110,5 +131,5 @@ def page_not_found(e):
 
 if __name__ == '__main__': #false if this file imported as module
     #enable debugging, auto-restarting of server when this file is modified
-    app.debug = True
-    app.run()
+	app.debug = True
+	app.run(host="localhost", port=8000, debug=True)
