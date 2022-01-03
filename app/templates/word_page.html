@@ -9,8 +9,7 @@
 	<body>
 		<div class="grid-y grid-padding-x align-middle">
 			<div class="grid-y align-center-middle cell" style="background-color: powderblue; padding: 10px 0;">
-				<h4>Player #{{ player_number }}</h4>
-				<p>Turn #{{ turn_number }}</p>
+				<h4>Turn #{{ turn_number }}</h4>
 			</div>
 			
 			<h1>{{ word }}</h1>
@@ -20,6 +19,16 @@
 			<h1 style="color: blue;">{{ target }}</h1>
 			<p style="text-align: center;">Definition: {{ target_definition }}</p>
 
+			{% if not synonyms and not links %}
+			{% if turn_number > 1 %}
+			<h3>Game over: No more related words</h3>
+			{% else %}
+			<h3>There were no related words :(</h3>
+			{% endif %}
+			<a href="/game" class="button custom-button">Start a New Game</a>
+			{% endif %}
+
+			{% if synonyms %}
 			<div class="card cell" style="border: none">
 				<h3 class="card-divider">Synonyms</h3>
 				<div class="card-section grid-x">
@@ -28,7 +37,9 @@
 					{% endfor %}
 				</div>
 			</div>
+			{% endif %}
 
+			{% if links %}
 			<div class="card cell" style="border: none">
 				<h3 class="card-divider">Wikipedia Links</h3>
 				<div class="card-section grid-x">
@@ -37,15 +48,8 @@
 					{% endfor %}
 				</div>
 			</div>
-			
-			{% if last_word %}
-			<a class="button custom-button" href="/back">
-				{{ last_word }}
-			</a>
 			{% endif %}
-			<a class="button custom-button" href="#">
-				Refresh
-			</a>
+
 		</div>
 	</body>
 </html>
