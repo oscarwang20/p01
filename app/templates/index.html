@@ -6,12 +6,26 @@
         	<h2>Home</h2>
         </div>
         
+        {% if not logged_in %}
+        <div class="grid-y grid-padding-x align-middle"></div>
+                <div class="grid-y align-center-middle cell">
+                        <h3>Login or register to start a new game</h3>
+                </div>
+                <div class="grid-y align-center-middle cell">
+                        <a href="/login" class="button custom-button">Login</a>
+                </div>
+                <div class="grid-y align-center-middle cell">
+                      <a href="/register" class="button custom-button">Register</a>  
+                </div>
+        </div>
+        {% else %}
         <div class="grid-y grid-padding-x align-middle" style="background-color: powderblue; padding: 20px 0;">
-        	<h3 style="color: white;">{{ total_points }}</h3>
+                <h3 style="color: white;">{{ points }}</h3>
             	<h3 style="color: white;">Total Points</h3>
         </div>
-        
+
         <div class="grid-x grid-padding-x align-center">
         	<a class="button custom-button" href="/game" style="margin-top: 20px;">New Game</a>
         </div>
+        {% endif %}
 {% endblock %}
