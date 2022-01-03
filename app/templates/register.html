@@ -33,6 +33,14 @@
                 <div class="large-12 cell grid-x align-center">
                     <input type="submit" class="button custom-button" id="submit">
                 </div>
+
+                {% if not pass_match %}
+                <p style="color: red">Passwords don't match</p>
+                {% endif %}
+
+                {% if not unique_name %}
+                <p style="color: red">Username is not unique</p>
+                {% endif %}
             </div>
         </form>
         </div>
