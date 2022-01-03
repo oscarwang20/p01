@@ -18,6 +18,19 @@ def key_used(api:str, debug:bool = DEBUG):
 def debug(msg:str, debug:bool = DEBUG):
 	if debug:
 		print(msg)
+		
+def is_word_frequent(word: str) -> bool:
+	fr = http.request('GET', f'https://api.datamuse.com/words?sp={word}&md=f&max=1')
+	fr = fr.data
+	fr = json.loads(fr)
+	
+	return fr and (fr[0]['score'] > 100000) # must appear at least 100k times per million words
+
+def get_word() -> str:
+	r = http.request('GET', f'https://random-words-api.vercel.app/word') # request
+	r = r.data #data from request
+	r = json.loads(r) #loads data into json
+	return r[0]['word'] # extracts only the word data
 
 def get_random_words(number: int = 1) -> list:
 	'''Get a random word list.
@@ -29,10 +42,13 @@ def get_random_words(number: int = 1) -> list:
 	words = list()
 
 	for i in range(number):
-		r = http.request('GET', f'https://random-words-api.vercel.app/word') # request
-		r = r.data #data from request
-		r = json.loads(r) #loads data into json
-		words.append(r[0]['word']) # extracts only the word data
+		w = get_word()
+		is_freq = is_word_frequent(w)
+		while not is_freq:
+			# print(w)
+			w = get_word()
+			is_freq = is_word_frequent(w)
+		words.append(w)
 
 	return words
 
