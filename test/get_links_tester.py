@@ -10,4 +10,5 @@ from app import get_links
 
 word = "iceland"
 print(get_links.get_an_edge(word))
-print(get_links.generate_start_end())
+for i in range(25):
+	print(get_links.generate_start_end())

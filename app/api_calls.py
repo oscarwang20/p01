@@ -93,7 +93,16 @@ def get_word_definition(word: str) -> str:
 		raw = raw[0] #extracts the most common definition of the word
 		raw = raw['shortdef'] #gets the quick definitions
 
-		return raw[0] #gets the most popular short definition
+		if isinstance(raw, list):
+			return raw[0] #gets the most popular short definition
+		elif isinstance(raw, str):
+			return raw
+		else:
+			wiki_desc = get_wikipedia_desc(word)
+			if wiki_desc == None: #if a wikipedia description exists return that, if not don't.
+				return 'There is no definition available.'
+			else:
+				return wiki_desc
 
 def get_word_thesaurus_raw(word: str) -> dict:
 	'''Gets MerriamWebster's raw synonyms archive for a word.
