@@ -194,7 +194,7 @@ def get_wikipedia_links(query: str, links:int = 'max') -> list:
 			return link_list
 		else:
 			r = r[list(r.keys())[0]]#extracts the most relevant page's links
-			if links in r.keys():
+			if 'links' in r.keys():
 				r = r['links']#extracts links in the page
 
 				for link in r:#extracts title data from the api
