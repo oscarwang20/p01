@@ -129,16 +129,6 @@ def display_word_page(word):
 			turn_number = session['turns'] + 1
 		)
 
-@app.route('/leaderboard')
-def display_leaderboard():
-	return render_template(
-		'leaderboard.html',
-		top_100 = [
-			{'name': 'user', 'points': 123456789, 'ranking': 1},
-			{'name': 'other', 'points': 12345678, 'ranking': 2}
-		]
-	)
-
 # Handles errors when a user visits a page they're not supposed to
 @app.errorhandler(404)
 def page_not_found(e):
