@@ -40,7 +40,7 @@ def display_login():
 		else:
 			return render_template(
 				'login.html',
-				fail = True	
+				fail = True
 			)
 
 # Redirection to the registration page and handles the registration
@@ -88,7 +88,7 @@ def display_new_word_page():
 	target = word_set[1]
 #	starting_options = get_random_words(3)
 
-	session['turns'] = 0
+	session['turns'] = 1
 	session['words'] = list()
 	session['target'] = target
 
