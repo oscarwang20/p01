@@ -198,7 +198,7 @@ def get_wikipedia_links(query: str, links:int = 'max') -> list:
 				r = r['links']#extracts links in the page
 
 				for link in r:#extracts title data from the api
-					link_list.append(link['title'])
+					link_list.append(link['title'].replace('\\', '&#47;\\'))#escapes slash characters
 
 
 	debug(len(link_list))
