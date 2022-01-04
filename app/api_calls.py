@@ -179,7 +179,7 @@ def get_wikipedia_links(query: str, links:int = 'max') -> list:
 	query = query.replace(' ', '%20') #replaces spaces in query with appropriate url codes
 	url = f'https://en.wikipedia.org/w/api.php?format=json&action=query&titles={query}&prop=links&pllimit={links}'
 
-	while url is not '':
+	while url != '':
 		r = http.request('GET', url)#gets api response
 		r = r.data#extracts data
 		r = json.loads(r)#loads the json
