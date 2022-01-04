@@ -100,3 +100,7 @@ rengZ -- 2022-01-03 09:14
 tamiT -- 2022-01-03
 - cleaned up game (added ending page, turned into single player, added points calculations, modified database)
 - added login/register functionality
+
+rengZ -- 2022-01-04 00:55
+ - Did debugging to fix wikipedia links not showing up
+ - Fixed error with turn division by zero error if you immediately get to the end word.
