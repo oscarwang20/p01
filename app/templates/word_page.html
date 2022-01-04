@@ -11,21 +11,21 @@
 			<div class="grid-y align-center-middle cell" style="background-color: powderblue; padding: 10px 0;">
 				<h4>Turn #{{ turn_number }}</h4>
 			</div>
-			
+
 			<h1>{{ word }}</h1>
 			<p style="text-align: center;">Definition: {{ definition }}</p>
-			
+
 			<h4 style="margin-top: 10px;">Target Word:</h4>
 			<h1 style="color: blue;">{{ target }}</h1>
 			<p style="text-align: center;">Definition: {{ target_definition }}</p>
 
 			{% if not synonyms and not links %}
-			{% if turn_number > 1 %}
-			<h3>Game over: No more related words</h3>
-			{% else %}
-			<h3>There were no related words :(</h3>
-			{% endif %}
-			<a href="/game" class="button custom-button">Start a New Game</a>
+				{% if turn_number > 1 %}
+					<h3>Game over: No more related words</h3>
+				{% else %}
+					<h3>There were no related words :(</h3>
+				{% endif %}
+				<a href="/game" class="button custom-button">Start a New Game</a>
 			{% endif %}
 
 			{% if synonyms %}
