@@ -84,8 +84,9 @@ def get_end_word(word: str, jumps:int = 7) -> str:
 		if path[-1] == None: #where there's no available link from second to last to current word
 			if len(path) < 3: #if there's not enough elements to remove None + the last word and have a word remaining
 				return None #there's no valid end word
-			path = path[0:-1] # cuts off last element, None
-			path_burned_forks[path[-2]] = path.pop(-1) # burned path for second to last element is the last element as that has no connections
+			else:
+				path = path[0:-1] # cuts off last element, None
+				path_burned_forks[path[-2]] = path.pop(-1) # burned path for second to last element is the last element as that has no connections
 		else:
 			path_burned_forks[path[-1]] = list() #creates new list of burned paths for valid words
 
