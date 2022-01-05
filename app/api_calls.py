@@ -144,7 +144,7 @@ def get_wikipedia_desc(query:str) -> str:
 	Keyword arguments:
 	query -- the current page we're on in the game
 
-	Retursn the description wikipedia has for that page'''
+	Returns the description wikipedia has for that page'''
 	query = query.replace(' ', '%20') #gets appropriate url codes for api query
 	url = f'https://en.wikipedia.org/w/api.php?format=json&action=query&titles={query}&prop=description'
 

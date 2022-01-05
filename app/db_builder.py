@@ -38,7 +38,6 @@ def insert_words(searched):
         synonyms = get_word_thesaurus_raw(word)
         # get the wikipedia links
         wikipedia_links = get_wikipedia_links(word)
-
         # get the date
         # date = get_date()
 
