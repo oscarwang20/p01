@@ -113,9 +113,8 @@ def display_new_word_page():
 # Subsequent game pages with the current word
 @app.route('/game/<word>', methods=['GET'])
 def display_word_page(word):
-	word = urllib.parse.unquote(word)#decodes url for future reference. Decodes it 1 layer.
 	print(word)
-	word = urllib.parse.unquote(word)#undoes the second level of encoding
+	word = urllib.parse.unquote(word)#decodes url for future reference. Decodes it 1 layer.
 	print(word)
 	if word == session['target']:
 		points = int(100000 / session['turns'])
