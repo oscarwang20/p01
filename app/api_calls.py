@@ -6,8 +6,8 @@ http = urllib3.PoolManager() # general requests manager that the rest of the fun
 #makes it work when importing from a different dir
 abs_path = os.path.dirname(__file__)
 keys = {
-	"webster_dictionary": open(abs_path + "/keys/MerriamWebster/Dictionary.key", "r").read().rstrip(),
-	"webster_thesaurus": open(abs_path + "/keys/MerriamWebster/Thesaurus.key", "r").read().rstrip(),
+	"webster_dictionary": open(abs_path + "/keys/key_merriamwebsterdictionary.key", "r").read().rstrip(),
+	"webster_thesaurus": open(abs_path + "/keys/key_merriamwebsterthesaurus.key", "r").read().rstrip(),
 }
 
 #DEBUG stuff
