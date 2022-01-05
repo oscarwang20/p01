@@ -9,7 +9,7 @@ app.secret_key = "a very ADVENTageous key"
 #jinja2 function to escape url links
 def escape_url(url:str):
 	escaped = urllib.parse.quote(url, safe='') #safe variable makes it so slashes are escaped as well
-	print(escaped)
+	escaped = urllib.parse.quote(escaped) #escapes the %'s as werkzeug interprets %2F as a slash https://stackoverflow.com/questions/55550575/how-to-handle-several-parameters-containing-slashes'. Double encoding ensures Flask doesnt do anything funky with its interpretation
 	return escaped
 app.jinja_env.globals.update(escape_url=escape_url) #gives the function to jinja2
 # Landing page for new users and logged out users
@@ -113,6 +113,10 @@ def display_new_word_page():
 # Subsequent game pages with the current word
 @app.route('/game/<word>', methods=['GET'])
 def display_word_page(word):
+	word = urllib.parse.unquote(word)#decodes url for future reference. Decodes it 1 layer.
+	print(word)
+	word = urllib.parse.unquote(word)#undoes the second level of encoding
+	print(word)
 	if word == session['target']:
 		points = int(100000 / session['turns'])
 		db_builder.add_points(session['username'], points)
