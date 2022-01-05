@@ -34,7 +34,7 @@ $ git clone https://github.com/oscarwang20/p01.git
 ```
 $ cd p01
 $ python3 -m venv foo
-$ path/to/venv/bin/activate
+$ source path/to/venv/bin/activate
 ```
 
 3. Install dependencies
