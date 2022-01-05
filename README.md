@@ -44,6 +44,7 @@ $ source path/to/venv/bin/activate
 
 4. Run the server
 ```
+(env) $ cd app/
 (env) $ python3 __init__.py
 ```
 
