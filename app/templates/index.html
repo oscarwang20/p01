@@ -3,7 +3,11 @@
 {% block body %}
 	<div style="padding: 30px 0;">
         <div class="grid-x grid-padding-x align-center">
-        	<h2>Home</h2>
+                {% if logged_in %}
+        	        <h2>Welcome {{ user }}!</h2>
+                {% else %}
+        	        <h2>Welcome to That Word Game!</h2>
+                {% endif %}
         </div>
         
         {% if not logged_in %}
@@ -25,7 +29,22 @@
         </div>
 
         <div class="grid-x grid-padding-x align-center">
-        	<a class="button custom-button" href="/game" style="margin-top: 20px;">New Game</a>
+                <form style="padding: 20px;" id="flavor-form" method="post" action="/game">
+                    <div class="grid-y grid-padding-x">
+                        <div class="small-8 cell">
+                            <input name="mode" type="radio" value="Normal Mode" id="thesaurus-mode" checked><label for="thesaurus-mode">Normal Mode</label>
+                            <input name="mode" type="radio" value="Rabbit Mode" id="wikipedia-mode"><label for="wikipedia-mode">Rabbit Hole</label>
+                        </div>
+                        <div class="small-8 cell">
+                            <label>Word Presets</label>
+                            <input name="starting_word" type="text" placeholder="Optional starting word">
+                            <input name="ending_word" type="text" placeholder="Optional ending word">
+                        </div>
+                        <div class="large-12 cell grid-x align-center">
+                            <input type="submit" class="button custom-button" id="submit" value="Start Game">
+                        </div>
+                    </div>
+                </form>
         </div>
         {% endif %}
 {% endblock %}

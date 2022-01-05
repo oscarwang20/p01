@@ -91,6 +91,7 @@ def get_end_word(word: str, jumps:int = 7) -> str:
 			path_burned_forks[path[-1]] = list() #creates new list of burned paths for valid words
 
 	return path[-1]
+
 def generate_start_end() -> tuple:
 	'''returns a tuple with a start and end word pair'''
 	start = None

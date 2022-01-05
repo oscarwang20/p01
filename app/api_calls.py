@@ -5,8 +5,8 @@ http = urllib3.PoolManager() # general requests manager that the rest of the fun
 #makes it work when importing from a different dir
 abs_path = os.path.dirname(__file__)
 keys = {
-	"webster_dictionary": open(abs_path + "/keys/MerriamWebster/Dictionary.key", "r").read().rstrip(),
-	"webster_thesaurus": open(abs_path + "/keys/MerriamWebster/Thesaurus.key", "r").read().rstrip(),
+	"webster_dictionary": open(abs_path + "/keys/key_merriamwebsterdictionary.key", "r").read().rstrip(),
+	"webster_thesaurus": open(abs_path + "/keys/key_merriamwebsterthesaurus.key", "r").read().rstrip(),
 }
 
 #DEBUG stuff
@@ -180,26 +180,26 @@ def get_wikipedia_links(query: str, links:int = 'max') -> list:
 	url = f'https://en.wikipedia.org/w/api.php?format=json&action=query&titles={query}&prop=links&pllimit={links}'
 
 	while url != '':
-		r = http.request('GET', url)#gets api response
-		r = r.data#extracts data
-		r = json.loads(r)#loads the json
+		r = http.request('GET', url)  #gets api response
+		r = r.data  #extracts data
+		r = json.loads(r)  #loads the json
 		if 'batchcomplete' not in r.keys(): #gets the next page pointer if it exists
 			url = f'https://en.wikipedia.org/w/api.php?format=json&action=query&titles={query}&prop=links&pllimit={links}&plcontinue={r["continue"]["plcontinue"]}'
 		else:
 			url = ''
-		r = r['query']#extracts main chunk of data from json
-		r = r['pages']#extracts pages concerning this topic
+		r = r['query']  #extracts main chunk of data from json
+		r = r['pages']  #extracts pages concerning this topic
 
 		if '-1' in r.keys(): #checks for the no page error return. If its present, return nothing as we don't have a page on it.
 			return link_list
 		else:
-			r = r[list(r.keys())[0]]#extracts the most relevant page's links
+			r = r[list(r.keys())[0]]  #extracts the most relevant page's links
 			if 'links' in r.keys():
-				r = r['links']#extracts links in the page
+				r = r['links']  #extracts links in the page
 
-				for link in r:#extracts title data from the api
-					link_list.append(link['title'].replace('\\', '&#47;\\'))#escapes slash characters
-
+				for link in r:  #extracts title data from the api
+					if link['ns'] == 0: #removes weird links
+						link_list.append(link['title'].replace('\\', '&#47;\\'))#escapes slash characters
 
 	debug(len(link_list))
 	return link_list
