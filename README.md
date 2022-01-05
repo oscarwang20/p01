@@ -1,4 +1,4 @@
-# Word in the Middle Game
+# Word in the Middle Game by Team Advent
 ---
 Advent - Renggeng Zheng, Oscar Wang, Tami Takada, Tomas Acuna  
 SoftDev  
@@ -11,19 +11,15 @@ Reng: API calls
 Tomas: Leaderboard  
 
 # Description
-The user will be assigned one randomly generated "word in the
-middle" by the Random Word API. They will also be given two distinct, also
-randomly generated, starting words and a selection of related words that appear as links.
-Related words are any words that appear as synonyms for the current word given by the
-Thesaurus API, and as links in the current word's Wikipedia entry given by the Wikipedia API.
+The user will be assigned one randomly generated "target word" by the Random Word API. They will also be given a distinct, also
+randomly generated, starting word and a selection of related words that appear as links.
+Related words are any words that appear as synonyms for the current word given by the Thesaurus API, and as links in the current word's Wikipedia entry given by the Wikipedia API.
 
-The aim of the game is to get closer to the word in the middle by strategically choosing words
-that relate to the previous word. The total score at the end of the
-game is calculated by
-the total number of turns the user took.
+The aim of the game is to get closer to the word in the middle by strategically choosing words that relate to the previous word. The total score at the end of the game is calculated by the total number of turns the user took.
 
 # API Cards
 - [Datamuse](https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_Datamuse.md)
+- [Random Word API](https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_RandomWordAPI.md)
 - [Merriam-Webster](https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_MerriamWebster.md)
 - [Wikipedia](https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_MediaWiki.md)
 # Launch Codes
@@ -38,7 +34,7 @@ $ git clone https://github.com/oscarwang20/p01.git
 ```
 $ cd p01
 $ python3 -m venv foo
-$ path/to/venv/bin/activate
+$ source path/to/venv/bin/activate
 ```
 
 3. Install dependencies
@@ -48,6 +44,7 @@ $ path/to/venv/bin/activate
 
 4. Run the server
 ```
+(env) $ cd app/
 (env) $ python3 __init__.py
 ```
 

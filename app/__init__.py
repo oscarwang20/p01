@@ -1,10 +1,17 @@
 from flask import Flask, render_template, request, url_for, session, redirect
 from get_links import *
 import db_builder
+import urllib
 
 app = Flask(__name__)
 app.secret_key = "a very ADVENTageous key"
 
+#jinja2 function to escape url links
+def escape_url(url:str):
+	escaped = urllib.parse.quote(url, safe='') #safe variable makes it so slashes are escaped as well
+	escaped = urllib.parse.quote(escaped) #escapes the %'s as werkzeug interprets %2F as a slash https://stackoverflow.com/questions/55550575/how-to-handle-several-parameters-containing-slashes'. Double encoding ensures Flask doesnt do anything funky with its interpretation
+	return escaped
+app.jinja_env.globals.update(escape_url=escape_url) #gives the function to jinja2
 # Landing page for new users and logged out users
 @app.route('/')
 def index():

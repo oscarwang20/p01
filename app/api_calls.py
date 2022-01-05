@@ -1,5 +1,6 @@
 import json
 import os
+import urllib
 import urllib3
 http = urllib3.PoolManager() # general requests manager that the rest of the functions will use.
 #makes it work when importing from a different dir
@@ -176,7 +177,7 @@ def get_wikipedia_links(query: str, links:int = 'max') -> list:
 	link_list = []
 
 	debug(query)
-	query = query.replace(' ', '%20') #replaces spaces in query with appropriate url codes
+	query = urllib.parse.quote(query) #replaces spaces in query with appropriate url codes
 	url = f'https://en.wikipedia.org/w/api.php?format=json&action=query&titles={query}&prop=links&pllimit={links}'
 
 	while url != '':

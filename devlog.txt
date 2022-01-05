@@ -96,7 +96,7 @@ tamiT -- 2021-12-22
 
 rengZ -- 2022-01-03 09:14
  - Made a DFS search for a valid end word that has a connection to the initial word
- 
+
 tamiT -- 2022-01-03
 - cleaned up game (added ending page, turned into single player, added points calculations, modified database)
 - added login/register functionality
@@ -104,3 +104,7 @@ tamiT -- 2022-01-03
 rengZ -- 2022-01-04 00:55
  - Did debugging to fix wikipedia links not showing up
  - Fixed error with turn division by zero error if you immediately get to the end word.
+
+rengZ -- 2022-01-05 02:31
+ - Fixed error with escaping slashes for entries with slashes in them (e.g. the page for AC/DC)
+ - Fixed key storage.
