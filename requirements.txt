@@ -1,2 +1,4 @@
 flask
+sqllite3
+urllib
 urllib3
